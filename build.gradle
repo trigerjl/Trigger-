@@ -1,28 +1,118 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.12.0'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
+plugins {
+    // Kotlin-плагин нужен, чтобы собирать uniffi-биндинги iroh из исходника
+    // app/src/main/java/computer/iroh/iroh_ffi.kt (jvmTarget 17).
+    // Версия 2.2.21 — минимальная ветка, читающая Kotlin-метаданные локального AAR
+    // (iroh-android-1.1.0.aar собран Kotlin 2.2.0, metadata version 2.2.0);
+    // с Kotlin 1.9.24 компилятор падает с "binary version of its metadata is 2.2.0".
+    id 'org.jetbrains.kotlin.android' version '2.2.21'
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://repo.huaweicloud.com/repository/maven/' }
-        maven { url uri('/storage/internal_new/project/Triger-poc/local-maven') }
+apply plugin: 'com.android.application'
+
+
+android {
+    namespace "com.triger.poc"
+    compileSdkVersion 35
+    defaultConfig {
+        applicationId "com.triger.poc"
+        minSdkVersion 26
+        targetSdkVersion 35
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lint {
+        // В offline-окружении lint-gradle недоступен; релиз собираем без lintVital.
+        checkReleaseBuilds false
+    }
+
+    compileOptions {
+        // 17, а не 1.8: AGP требует совпадения JVM-target у Java и Kotlin,
+        // а iroh-биндинги собраны под Java 17 (class file v61).
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/DISCLAIMER"
+            excludes += "META-INF/INDEX.LIST"
+            excludes += "META-INF/DEPENDENCIES"
+            excludes += "META-INF/*.SF"
+            excludes += "META-INF/*.DSA"
+            excludes += "META-INF/*.RSA"
+        }
+    }
+
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // Iroh P2P:
+    //  - нативная библиотека libiroh_ffi.so (Android, 4 ABI) и класс IrohAndroid — из локального AAR;
+    //  - uniffi-биндинги computer.iroh.* собираются из исходника
+    //    app/src/main/java/computer/iroh/iroh_ffi.kt Kotlin-плагином (jvmTarget 17).
+    // Раньше для этого был нужен предсобранный libs/iroh-android-bindings.jar: Kotlin-плагина в
+    // модуле не было, а штатный iroh.jar собран под Java 21 (class file v65) и не читается javac 17
+    // (см. tools/build-iroh-bindings.sh). Теперь Kotlin-плагин подключен, и prebuilt-jar стал бы
+    // дубликатом классов computer.iroh.* — поэтому он убран из libs/.
+    implementation('com.m4coding.local:iroh-android:1.1.0') {
+        // JNA подключается ниже как AAR (с libjnidispatch.so). Транзитивный jar из POM
+        // этого AAR даёт дубликаты com.sun.jna.* и не содержит android-нативных библиотек.
+        exclude group: 'net.java.dev.jna', module: 'jna'
+    }
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0'
+    // JNA 5.14+: биндинги iroh используют com.sun.jna.internal.Cleaner, которого нет в JNA 5.6.0.
+    implementation 'net.java.dev.jna:jna:5.14.0@aar'
 
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    // Версия annotation, доступная в offline-кэше (1.1.0 в нём отсутствует).
+    implementation('androidx.annotation:annotation:1.5.0') {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
+    }
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'org.web3j:core:4.8.8-android'
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
+    implementation 'org.java-websocket:Java-WebSocket:1.5.3'
+    // okhttp внутри web3j требует kotlin-stdlib 1.6.21, которой нет в offline-кэше.
+    // Фиксируем закэчированную версию (раньше её подтягивал webrtc-фреймворк).
+    // 2.2.21 нужна для iroh-биндингов: kotlin.enums.EnumEntries и kotlin.coroutines.jvm.internal.Boxing,
+    // а также потому, что локальный iroh AAR собран Kotlin 2.2.0 (metadata 2.2.0) —
+    // компилятор Kotlin младше 2.2 не может прочитать его метаданные.
+    // jdk7/jdk8 на 1.6.21 содержат те же классы, что и stdlib 1.8+ -> дубликаты классов,
+    // поэтому фиксируем пустые шимы из той же ветки.
+    configurations.all {
+        resolutionStrategy.force 'org.jetbrains.kotlin:kotlin-stdlib:2.2.21'
+        resolutionStrategy.force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.2.21'
+        resolutionStrategy.force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.2.21'
+        resolutionStrategy.force 'net.java.dev.jna:jna:5.14.0'
+    }
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:2.2.21'
+
+
+    // web3j тянет bcprov-jdk15on:1.68; явно объявляем bcprov-jdk18on, чтобы org.bouncycastle.*
+    // был и в compile, и в runtime (CryptoUtils/MainActivity используют BouncyCastle).
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+    configurations.all {
+        exclude group: 'org.bouncycastle', module: 'bcprov-jdk15on'
+    }
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
