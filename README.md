@@ -1,3 +1,11 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/trigerjl/Trigger-?style=flat-square)
+![GitHub Repo stars](https://img.shields.io/github/stars/trigerjl/Trigger-?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/trigerjl/Trigger-?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/trigerjl/Trigger-?style=flat-square)
+![Android](https://img.shields.io/badge/Platform-Android-green?style=flat-square)
+
+**Trigger** — это попытка создать «Биткоин для смартфонов». Мы убрали гигантские фермы и перегрев батарей. Теперь узел сети — это твой телефон, а защита от ботов строится на SIM-карте.
+
 # Trigger — P2P блокчейн-кошелёк на Android
 
 Мобильный узел блокчейн-сети. Майнинг, чат и обмен без серверов и посредников.
