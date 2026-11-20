@@ -1,0 +1,430 @@
+<resources>
+    <string name="app_name">Trigger</string>
+
+    <string name="language_title">Sprache wählen</string>
+    <string name="language_subtitle">Du kannst sie später in den Einstellungen ändern</string>
+    <string name="language_en">English</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_es">Español</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_zh">中文</string>
+    <string name="language_fr">Français</string>
+    <string name="language_ar">العربية</string>
+    <string name="language_hi">हिन्दी</string>
+
+    <string name="onboarding_title_1">Netzwerkknoten</string>
+    <string name="onboarding_text_1">Dein Telefon ist ein Knoten des Blockchain-Netzwerks.</string>
+    <string name="onboarding_subtitle_1">Dein Telefon ist Teil des Netzwerks</string>
+    <string name="onboarding_title_2">TRG-Mining</string>
+    <string name="onboarding_text_2">Mine TRG, indem du dein Telefon einfach eingeschaltet lässt. Je stabiler das Netzwerk, desto höher die Belohnung.</string>
+    <string name="onboarding_subtitle_2">Mine, während dein Telefon eingeschaltet bleibt</string>
+    <string name="onboarding_title_3">Direkte Kommunikation</string>
+    <string name="onboarding_text_3">Chatte direkt mit anderen Nutzern. Ohne Server oder Vermittler.</string>
+    <string name="onboarding_subtitle_3">Ohne Server oder Vermittler</string>
+    <string name="onboarding_step">Schritt %1$d von %2$d</string>
+    <string name="onboarding_next">Weiter</string>
+    <string name="onboarding_start">Starten</string>
+
+    <string name="nav_wallet">Wallet</string>
+    <string name="nav_mining">Mining</string>
+    <string name="nav_profile">Profil</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="nav_market">Markt</string>
+    <string name="network_no_connection">Kein Netzwerk</string>
+    <string name="market_title">Markt</string>
+    <string name="market_add_item">Anzeige erstellen</string>
+    <string name="market_buy">Kaufen</string>
+    <string name="market_no_items">Noch keine Anzeigen</string>
+    <string name="market_field_title">Titel</string>
+    <string name="market_field_description">Beschreibung</string>
+    <string name="market_field_price">Preis (TRG)</string>
+    <string name="market_create">Erstellen</string>
+    <string name="market_invalid">Titel und gültigen Preis eingeben</string>
+    <string name="market_seller_format">Verkäufer: %1$s</string>
+    <string name="market_price_format">%1$s TRG</string>
+
+    <string name="wallet_balance_title">Mein Guthaben</string>
+    <string name="wallet_deposit">Einzahlen</string>
+    <string name="wallet_withdraw">Auszahlen</string>
+    <string name="wallet_show_qr">QR anzeigen</string>
+    <string name="wallet_scan_qr">QR scannen</string>
+    <string name="wallet_history_title">Transaktionsverlauf</string>
+    <string name="mining_stats_title">Statistiken</string>
+    <string name="mining_stopped">Gestoppt</string>
+    <string name="mining_started">Mining gestartet</string>
+    <string name="mining_hero_title">TRG-Mining im Netzwerk</string>
+    <string name="mining_start">START</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_language">Sprache</string>
+    <string name="chat_title">Chat</string>
+    <string name="pin_title">PIN-Code eingeben</string>
+
+    <string name="action_send">Senden</string>
+    <string name="action_receive">Empfangen</string>
+    <string name="action_save">Speichern</string>
+    <string name="action_cancel">Abbrechen</string>
+    <string name="action_close">Schließen</string>
+    <string name="action_copy">Kopieren</string>
+    <string name="action_reset">Zurücksetzen</string>
+    <string name="action_back">Zurück</string>
+
+    <string name="wallet_chart_title">Guthabenentwicklung</string>
+    <string name="wallet_chart_subtitle">Belohnungen und Überweisungen im Zeitverlauf</string>
+    <string name="wallet_chart_empty">Noch keine Diagrammdaten. Starte das Mining!</string>
+    <string name="wallet_history_empty">Noch keine Transaktionen</string>
+    <string name="wallet_history_empty_hint">Mining-Belohnungen und Überweisungen erscheinen hier</string>
+    <string name="wallet_address_not_ready">Wallet-Adresse ist noch nicht bereit</string>
+    <string name="wallet_address_format">Adresse: %1$s</string>
+
+    <string name="mining_realtime_subtitle">In Echtzeit aktualisiert</string>
+    <string name="mining_total_blocks">Blöcke insgesamt</string>
+    <string name="mining_average_reward">Durchschnitt</string>
+    <string name="mining_online">Online</string>
+    <string name="mining_last_hash">Letzter Hash</string>
+    <string name="mining_hint_start">Tippen, um das Mining zu starten</string>
+    <string name="mining_hint_stop">Tippen, um das Mining zu stoppen</string>
+    <string name="mining_active">Aktiv</string>
+    <string name="mining_stop">STOPP</string>
+    <string name="mining_duration_days_hours">%1$dT %2$dStd</string>
+    <string name="mining_duration_hours_minutes">%1$dStd %2$dMin</string>
+    <string name="mining_duration_minutes_seconds">%1$dMin %2$dSek</string>
+    <string name="mining_duration_seconds">%1$dSek</string>
+
+    <string name="profile_change_avatar">Avatar ändern</string>
+    <string name="profile_nickname_hint">Spitzname</string>
+    <string name="profile_save_profile">Profil speichern</string>
+    <string name="profile_share_id">Meine ID kopieren</string>
+    <string name="profile_find_hint">Endpoint-ID des Freundes eingeben</string>
+    <string name="profile_find_tip">Finde einen Freund per Endpoint-ID oder Spitznamen. Kopiere deine ID und sende sie deinem Freund.</string>
+    <string name="profile_search_hint">Nach Spitzname suchen</string>
+    <string name="profile_search">Suchen</string>
+    <string name="profile_open_chat">Chat öffnen</string>
+    <string name="profile_contacts">Kontakte</string>
+    <string name="profile_refresh">Aktualisieren</string>
+    <string name="profile_no_contacts">Noch keine Kontakte</string>
+    <string name="profile_no_contacts_hint">Finde einen Freund über den Spitznamen oder verbinde dich mit dem Netzwerk</string>
+    <string name="profile_reputation_format">Reputation: %1$d · %2$s</string>
+    <string name="profile_id_unavailable">ID nicht verfügbar</string>
+    <string name="profile_endpoint_unavailable">Endpoint-ID nicht verfügbar</string>
+    <string name="profile_endpoint_copied">Endpoint-ID kopiert</string>
+    <string name="profile_saved">Profil gespeichert</string>
+    <string name="profile_endpoint_invalid">Ungültige Endpoint-ID</string>
+    <string name="profile_resolve_error">Fehler beim Auflösen des Knotens: %1$s</string>
+    <string name="profile_enter_nickname">Spitzname zum Suchen eingeben</string>
+    <string name="profile_searching">Netzwerk wird durchsucht…</string>
+    <string name="profile_not_found">Kontakt nicht gefunden: keine verbundenen Peers zum Durchsuchen.</string>
+    <string name="profile_found">Gefunden: %1$s</string>
+    <string name="profile_found_network">Im Netzwerk gefunden: %1$s</string>
+    <string name="profile_pex_hint">Über mobile Daten erfolgt die Suche über die Kette verbundener Peers (PEX). Mindestens ein bekannter Peer ist erforderlich.</string>
+    <string name="profile_peer_online">online</string>
+    <string name="profile_peer_found">gefunden</string>
+    <string name="profile_choose_avatar">Avatar wählen</string>
+    <string name="profile_gallery_error">Galerie konnte nicht geöffnet werden</string>
+    <string name="profile_saving_avatar">Avatar wird gespeichert…</string>
+    <string name="profile_avatar_save_error">Avatar konnte nicht gespeichert werden</string>
+    <string name="profile_avatar_updated">Avatar aktualisiert</string>
+
+    <string name="settings_subtitle">Darstellung, Mining und Netzwerk</string>
+    <string name="settings_theme">Design</string>
+    <string name="settings_theme_subtitle">Hell oder dunkel</string>
+    <string name="settings_pin">PIN-Code</string>
+    <string name="settings_pin_not_set">Nicht festgelegt</string>
+    <string name="settings_export_keys">Schlüssel exportieren</string>
+    <string name="settings_export_keys_subtitle">Backup des privaten Schlüssels</string>
+    <string name="settings_reset_counter">Zähler zurücksetzen</string>
+    <string name="settings_reset_counter_subtitle">Blockzähler zurücksetzen</string>
+    <string name="settings_network_nodes">Netzwerkknoten</string>
+    <string name="settings_connected_zero">Verbunden: 0</string>
+    <string name="settings_connected_format">Verbunden: %1$d</string>
+    <string name="settings_about">Über</string>
+    <string name="settings_footer">Trigger — ein dezentrales Netzwerk</string>
+    <string name="settings_reset_title">Zähler zurücksetzen?</string>
+    <string name="settings_reset_message">Der Blockzähler wird zurückgesetzt. Transaktionsverlauf und Chain bleiben unverändert.</string>
+    <string name="settings_counter_reset_toast">Blockzähler zurückgesetzt</string>
+    <string name="settings_pin_set">Festgelegt · zum Ändern tippen</string>
+    <string name="settings_pin_not_set_action">Nicht festgelegt · zum Festlegen tippen</string>
+
+    <string name="transfer_title">TRG überweisen</string>
+    <string name="transfer_available">Verfügbar</string>
+    <string name="transfer_recipient_address">Empfängeradresse</string>
+    <string name="transfer_amount">Betrag (TRG)</string>
+    <string name="transfer_fee">Gebühr (1%)</string>
+    <string name="transfer_total">Gesamtbelastung</string>
+    <string name="transfer_hint" formatted="false">Überweisungen laufen über Iroh. Eine Gebühr von 1% wird verbrannt.</string>
+    <string name="transfer_enter_recipient">Empfängeradresse eingeben</string>
+    <string name="transfer_enter_amount">Betrag eingeben</string>
+    <string name="transfer_qr_no_wallet">Keine Wallet-Adresse im QR-Code gefunden</string>
+
+    <string name="qr_read_error">QR-Code konnte nicht gelesen werden</string>
+    <string name="scan_cancelled">Scan abgebrochen</string>
+    <string name="qr_no_address">Keine Adresse im QR-Code gefunden</string>
+    <string name="qr_scanned_title">QR-Code gescannt</string>
+    <string name="qr_scanned_message">Wallet-Adresse:\n\n%1$s</string>
+
+    <string name="tx_sent">Gesendet</string>
+    <string name="tx_received">Empfangen</string>
+    <string name="tx_fee_burn">Gebührenverbrennung</string>
+    <string name="tx_mining_reward">Mining-Belohnung</string>
+    <string name="status_confirmed">Bestätigt</string>
+    <string name="tx_hash_copied">Hash kopiert</string>
+
+    <string name="action_ok">OK</string>
+    <string name="action_skip">Überspringen</string>
+    <string name="action_connect">Verbinden</string>
+    <string name="action_delete">Löschen</string>
+    <string name="action_continue">Weiter</string>
+    <string name="warning_title">Warnung</string>
+    <string name="version_format">Version %1$s</string>
+    <string name="avatar">Avatar</string>
+
+    <string name="network_searching_global">Knoten im globalen Netzwerk werden gesucht…</string>
+    <string name="network_local_format">Lokales Netzwerk: %1$d Knoten</string>
+    <string name="network_switched_format">Verbindung gewechselt zu %1$s</string>
+    <string name="network_other">Anderes Netzwerk</string>
+    <string name="network_none">Kein Netzwerk</string>
+    <string name="toast_address_copied">Adresse kopiert</string>
+    <string name="toast_searching_nodes">Knoten werden gesucht…</string>
+    <string name="toast_enter_endpoint">Endpoint-ID eingeben</string>
+    <string name="toast_connected_format">Verbunden: %1$s</string>
+    <string name="toast_connect_failed_format">Verbindung fehlgeschlagen: %1$s</string>
+    <string name="toast_connecting_format">Verbindung zu Knoten %1$s…</string>
+    <string name="toast_chain_gap">Lücke erkannt. Synchronisierung…</string>
+    <string name="toast_block_received">Block von einem Peer empfangen!</string>
+    <string name="toast_chain_synced">Chain synchronisiert!</string>
+
+    <string name="notification_mining_title">Trigger-Mining</string>
+    <string name="notification_mining_signing">Trigger: Block-Signierung</string>
+    <string name="notification_mining_channel_desc">Hintergrunddienst für die Block-Signierung von Trigger</string>
+    <string name="notification_message_title_format">Neue Nachricht von %1$s</string>
+    <string name="notification_contact_fallback">Kontakt</string>
+    <string name="notification_mining_reward_title_format">Du hast %1$s TRG verdient</string>
+    <string name="notification_mining_reward_text">Mining-Belohnung deinem Guthaben gutgeschrieben</string>
+    <string name="notification_channel_messages">Nachrichten</string>
+    <string name="notification_channel_messages_desc">Benachrichtigungen über neue Nachrichten</string>
+    <string name="notification_channel_mining">Mining-Belohnungen</string>
+    <string name="notification_channel_mining_desc">Benachrichtigungen über gutgeschriebene TRG-Belohnungen</string>
+
+    <string name="error_generate_validator_key">Validator-Schlüssel konnte nicht erzeugt werden</string>
+    <string name="error_invalid_endpoint_id_format">Ungültige Endpoint-ID: %1$s</string>
+    <string name="error_peer_not_found_dns">Peer nicht im DNS gefunden</string>
+    <string name="error_resolve_dns_format">Fehler beim Auflösen des Knotens über DNS: %1$s</string>
+
+    <string name="chat_iroh_title">Iroh-Chat</string>
+    <string name="chat_iroh_p2p_title">Iroh-P2P-Chat</string>
+    <string name="chat_open">Chat öffnen</string>
+    <string name="chat_my_endpoint_placeholder">Meine Endpoint-ID: -</string>
+    <string name="chat_exchange_endpoint_hint">Tausche Endpoint-IDs mit deinem Kontakt aus</string>
+    <string name="chat_connected_peers">Verbundene Kontakte</string>
+    <string name="chat_empty_hint">Noch keine Kontakte gefunden. Sende deine Endpoint-ID an ein anderes Gerät und bitte um Verbindung — weitere Knoten werden automatisch entdeckt.</string>
+    <string name="chat_message_hint">Nachricht…</string>
+    <string name="chat_searching_format">Suche nach „%1$s“ im Netzwerk…</string>
+    <string name="chat_found_format">Gefunden: %1$s\nEndpoint-ID: %2$s</string>
+    <string name="chat_found_network_format">Im Netzwerk gefunden: %1$s\nEndpoint-ID: %2$s</string>
+    <string name="chat_my_endpoint_starting">Meine Endpoint-ID: wird gestartet…</string>
+    <string name="chat_my_endpoint_format">Meine Endpoint-ID: %1$s\n(zum Kopieren tippen)</string>
+    <string name="chat_iroh_starting">Iroh wird gestartet…</string>
+    <string name="chat_ready">Bereit: Wähle einen Kontakt aus der Liste</string>
+    <string name="chat_peer_connected">verbunden</string>
+    <string name="chat_peer_found_on_send">gefunden, verbindet beim Senden</string>
+    <string name="chat_connecting"> · verbinde…</string>
+    <string name="chat_connected"> · verbunden</string>
+    <string name="chat_error_format"> · Fehler: %1$s</string>
+    <string name="chat_peer_not_selected">nicht ausgewählt</string>
+    <string name="toast_no_peer_selected">Kein Kontakt ausgewählt</string>
+    <string name="toast_message_from_format">Nachricht von %1$s</string>
+    <string name="chat_self">Du</string>
+    <string name="chat_peer">Kontakt</string>
+
+    <string name="profile_title">Profil</string>
+    <string name="profile_avatar">Avatar</string>
+    <string name="profile_copy_endpoint">Meine Endpoint-ID kopieren</string>
+
+    <string name="nodes_list_title">Knotenliste</string>
+    <string name="nodes_empty">Keine verbundenen Knoten</string>
+    <string name="nodes_my_endpoint_format">Meine Endpoint-ID: %1$s</string>
+
+    <string name="pin_enter_title">PIN-Code eingeben</string>
+    <string name="pin_enter_subtitle">PIN-Code eingeben, um die App zu entsperren</string>
+    <string name="pin_forgot">PIN vergessen?</string>
+    <string name="pin_error_min_4">Mindestens 4 Ziffern eingeben</string>
+    <string name="pin_error_incorrect">Falscher PIN-Code</string>
+    <string name="pin_change_title">PIN-Code ändern</string>
+    <string name="pin_setup_title">PIN-Code festlegen</string>
+    <string name="pin_security_hint">Verwende zu deiner Sicherheit einen starken Code</string>
+    <string name="pin_current_hint">Aktueller PIN-Code</string>
+    <string name="pin_new_hint">Neuer PIN-Code</string>
+    <string name="pin_confirm_hint">PIN-Code bestätigen</string>
+    <string name="pin_label">PIN-Code</string>
+    <string name="pin_change_action">PIN ändern</string>
+    <string name="pin_save_action">PIN speichern</string>
+    <string name="pin_hide">PIN-Code ausblenden</string>
+    <string name="pin_show">PIN-Code anzeigen</string>
+    <string name="pin_requirements_title">PIN-Anforderungen</string>
+    <string name="pin_req_length">Mindestens 4 Ziffern</string>
+    <string name="pin_req_unique">Keine wiederholten Ziffern (optional)</string>
+    <string name="pin_warning">Ohne PIN-Code sind die App-Daten ungeschützt</string>
+    <string name="pin_strength_weak">Schwach</string>
+    <string name="pin_strength_medium">Mittel</string>
+    <string name="pin_strength_strong">Stark</string>
+    <string name="pin_strength_format">Stärke: %1$s</string>
+    <string name="pin_error_length">Die PIN muss 4–6 Ziffern enthalten</string>
+    <string name="pin_error_mismatch">PIN-Codes stimmen nicht überein</string>
+    <string name="pin_set_toast">PIN-Code festgelegt</string>
+    <string name="pin_error_current_incorrect">Aktueller PIN-Code ist falsch</string>
+    <string name="pin_error_new_length">Die neue PIN muss 4–6 Ziffern enthalten</string>
+    <string name="pin_updated_toast">PIN-Code aktualisiert</string>
+    <string name="pin_error_enter_current_to_delete">Aktuellen PIN-Code zum Löschen eingeben</string>
+    <string name="pin_delete_title">PIN-Code löschen?</string>
+    <string name="pin_delete_message">Der App-Schutz wird deaktiviert. Daten sind dann ohne PIN zugänglich.</string>
+    <string name="pin_deleted_toast">PIN-Code gelöscht</string>
+    <string name="pin_skip_title">Ohne PIN-Code fortfahren?</string>
+    <string name="pin_skip_message">Ohne PIN-Code sind die App-Daten ungeschützt. Du kannst ihn später in den Einstellungen festlegen.</string>
+    <string name="pin_reset_toast">PIN-Code zurückgesetzt</string>
+
+    <string name="error_private_key_unavailable">Privater Schlüssel konnte nicht abgerufen werden</string>
+    <string name="private_key_not_created">Schlüssel noch nicht erstellt</string>
+    <string name="private_key_copied">Privater Schlüssel kopiert</string>
+    <string name="private_key_backup_subtitle">Wallet-Backup</string>
+    <string name="private_key_warning">Zeige deinen privaten Schlüssel niemals jemandem. Wenn du ihn verlierst, ist der Zugriff auf die Wallet verloren.</string>
+    <string name="private_key_label">Privater Schlüssel</string>
+    <string name="private_key_show">Privaten Schlüssel anzeigen</string>
+    <string name="private_key_hide">Privaten Schlüssel ausblenden</string>
+    <string name="error_enter_private_key">Privaten Schlüssel eingeben</string>
+    <string name="error_private_key_not_found">Privater Schlüssel auf dem Gerät nicht gefunden</string>
+    <string name="error_private_key_invalid">Ungültiger privater Schlüssel</string>
+    <string name="forgot_pin_title">PIN-Code zurücksetzen</string>
+    <string name="forgot_pin_subtitle">Bestätige deine Identität mit deinem privaten Schlüssel</string>
+    <string name="forgot_pin_warning">Der private Schlüssel gewährt vollen Zugriff auf die Wallet. Gib ihn nur auf deinem eigenen Gerät ein und zeige ihn niemandem.</string>
+    <string name="forgot_pin_action">PIN zurücksetzen</string>
+
+    <string name="reputation_level_newbie">Neuling</string>
+    <string name="reputation_level_reliable">Zuverlässig</string>
+    <string name="reputation_level_expert">Experte</string>
+
+    <string name="error_wallet_unavailable">Wallet nicht verfügbar</string>
+    <string name="error_invalid_recipient">Ungültige Empfängeradresse</string>
+    <string name="error_self_transfer">Du kannst keine Überweisung an dich selbst senden</string>
+    <string name="error_invalid_amount">Ungültiger Betrag</string>
+    <string name="error_amount_positive">Der Betrag muss größer als null sein</string>
+    <string name="error_insufficient_funds_fee">Unzureichende Mittel einschließlich Gebühr</string>
+    <string name="error_signing_key_unavailable">Schlüssel zum Signieren konnte nicht abgerufen werden</string>
+    <string name="error_recipient_not_found">Empfänger im Netzwerk nicht gefunden. Verbinde dich mit einem Peer und versuche es erneut.</string>
+    <string name="error_sign_transfer">Überweisung konnte nicht signiert werden</string>
+    <string name="transfer_sent_format">Überweisung gesendet: %1$s TRG</string>
+
+    <string name="chart_start">Start</string>
+    <string name="chart_now">jetzt</string>
+
+    <string name="onboarding_welcome">Willkommen im dezentralen Netzwerk</string>
+    <string name="onboarding_feature_phone">Dein Telefon ist Teil des Netzwerks</string>
+    <string name="onboarding_feature_mine">Mine, während dein Telefon eingeschaltet bleibt</string>
+    <string name="onboarding_feature_no_servers">Ohne Server oder Vermittler</string>
+
+    <string name="wallet_qr_title">Wallet-QR-Code</string>
+    <string name="wallet_qr_hint">Zeige diesen Code dem Absender, um TRG zu empfangen</string>
+    <string name="wallet_qr_content_desc">QR-Code der Wallet-Adresse</string>
+    <string name="wallet_copy_address">Adresse kopieren</string>
+
+    <string name="qr_scanner_hint">Richte die Kamera auf einen QR-Code</string>
+    <string name="qr_scanner_subhint">Halte den Code im Bild — er wird automatisch erkannt</string>
+
+    <string name="about_description">Ein dezentraler Blockchain-Netzwerkknoten: Mining und direkte Kommunikation ohne Server.</string>
+
+    <string name="tx_details_title">Transaktionsdetails</string>
+    <string name="tx_details_subtitle">Transaktion in der Trigger-Wallet</string>
+    <string name="tx_type">Typ</string>
+    <string name="tx_date">Datum</string>
+    <string name="tx_status">Status</string>
+    <string name="tx_hash">Hash</string>
+    <string name="tx_copy_hash">Hash kopieren</string>
+    <string name="nodes_peer_connected">verbunden</string>
+    <string name="nodes_peer_found">gefunden</string>
+    <string name="error_qr_generate">QR-Code konnte nicht erstellt werden</string>
+    <string name="error_camera_permission">Kamerazugriff ist zum Scannen erforderlich</string>
+
+    <string name="label_id_format">ID: %1$s</string>
+    <string name="profile_endpoint_id_format">Endpoint-ID: %1$s</string>
+    <string name="amount_zero_aura">0 TRG</string>
+    <string name="amount_plus_zero_aura">+0 TRG</string>
+    <string name="amount_format">%1$s TRG</string>
+    <string name="amount_signed_format">%1$s%2$s TRG</string>
+    <string name="placeholder_dash">—</string>
+    <string name="mining_protocol_poa">PoA</string>
+    <string name="number_zero">0</string>
+    <string name="hint_address_placeholder">0x...</string>
+    <string name="hint_amount_placeholder">0.00</string>
+    <string name="token_aura">TRG</string>
+    <string name="brand_upper">TRIGGER</string>
+    <string name="pin_key_0">0</string>
+    <string name="pin_key_1">1</string>
+    <string name="pin_key_2">2</string>
+    <string name="pin_key_3">3</string>
+    <string name="pin_key_4">4</string>
+    <string name="pin_key_5">5</string>
+    <string name="pin_key_6">6</string>
+    <string name="pin_key_7">7</string>
+    <string name="pin_key_8">8</string>
+    <string name="pin_key_9">9</string>
+    <string name="pin_key_delete">⌫</string>
+    <string name="hint_private_key_placeholder">0x...</string>
+    <string name="network_wifi">WLAN</string>
+    <string name="network_cellular">4G</string>
+    <string name="network_ethernet">Ethernet</string>
+    <string name="network_vpn">VPN</string>
+    <string name="app_version_name_format">%1$s v%2$s</string>
+    <string name="peer_unknown">Unbekannter Peer</string>
+
+    <string-array name="peer_adjectives">
+        <item>Tapfer</item>
+        <item>Schnell</item>
+        <item>Klug</item>
+        <item>Schlau</item>
+        <item>Stark</item>
+        <item>Ruhig</item>
+        <item>Fröhlich</item>
+        <item>Still</item>
+        <item>Kühn</item>
+        <item>Weise</item>
+        <item>Wagemutig</item>
+        <item>Loyal</item>
+        <item>Standhaft</item>
+        <item>Hell</item>
+        <item>Scharf</item>
+        <item>Frei</item>
+        <item>Wild</item>
+        <item>Listig</item>
+        <item>Leicht</item>
+        <item>Stählern</item>
+        <item>Zuverlässig</item>
+        <item>Mutig</item>
+        <item>Entschlossen</item>
+        <item>Flink</item>
+    </string-array>
+
+    <string-array name="peer_nouns">
+        <item>Katze</item>
+        <item>Fuchs</item>
+        <item>Wolf</item>
+        <item>Bär</item>
+        <item>Adler</item>
+        <item>Falke</item>
+        <item>Tiger</item>
+        <item>Löwe</item>
+        <item>Leopard</item>
+        <item>Igel</item>
+        <item>Hase</item>
+        <item>Biber</item>
+        <item>Delfin</item>
+        <item>Wal</item>
+        <item>Drache</item>
+        <item>Phönix</item>
+        <item>Habicht</item>
+        <item>Rabe</item>
+        <item>Elch</item>
+        <item>Hirsch</item>
+        <item>Pinguin</item>
+        <item>Gepard</item>
+        <item>Luchs</item>
+        <item>Kojote</item>
+    </string-array>
+</resources>

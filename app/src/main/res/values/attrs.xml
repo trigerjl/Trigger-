@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GradientTextView">
+        <attr name="gradientStart" format="color" />
+        <attr name="gradientEnd" format="color" />
+    </declare-styleable>
+
+    <attr name="walletItemBg" format="color" />
+    <attr name="walletItemStroke" format="color" />
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Теги для хранения применённой косметики в View. -->
+<resources>
+    <item type="id" name="tag_cosmetic_frame" />
+    <item type="id" name="tag_cosmetic_avatar" />
+</resources>

@@ -1,0 +1,430 @@
+<resources>
+    <string name="app_name">Trigger</string>
+
+    <string name="language_title">भाषा चुनें</string>
+    <string name="language_subtitle">आप इसे बाद में सेटिंग्स में बदल सकते हैं</string>
+    <string name="language_en">English</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_es">Español</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_zh">中文</string>
+    <string name="language_fr">Français</string>
+    <string name="language_ar">العربية</string>
+    <string name="language_hi">हिन्दी</string>
+
+    <string name="onboarding_title_1">नेटवर्क नोड</string>
+    <string name="onboarding_text_1">आपका फ़ोन ब्लॉकचेन नेटवर्क का एक नोड है।</string>
+    <string name="onboarding_subtitle_1">आपका फ़ोन नेटवर्क का हिस्सा है</string>
+    <string name="onboarding_title_2">TRG माइनिंग</string>
+    <string name="onboarding_text_2">अपना फ़ोन चालू रखकर TRG माइन करें। नेटवर्क जितना स्थिर होगा, इनाम उतना बड़ा होगा।</string>
+    <string name="onboarding_subtitle_2">फ़ोन चालू रखते हुए माइन करें</string>
+    <string name="onboarding_title_3">सीधा संचार</string>
+    <string name="onboarding_text_3">अन्य उपयोगकर्ताओं से सीधे चैट करें। कोई सर्वर या बिचौलिया नहीं।</string>
+    <string name="onboarding_subtitle_3">कोई सर्वर या बिचौलिया नहीं</string>
+    <string name="onboarding_step">चरण %1$d / %2$d</string>
+    <string name="onboarding_next">आगे</string>
+    <string name="onboarding_start">शुरू करें</string>
+
+    <string name="nav_wallet">वॉलेट</string>
+    <string name="nav_mining">माइनिंग</string>
+    <string name="nav_profile">प्रोफ़ाइल</string>
+    <string name="nav_settings">सेटिंग्स</string>
+    <string name="nav_market">बाज़ार</string>
+    <string name="network_no_connection">कोई नेटवर्क नहीं</string>
+    <string name="market_title">बाज़ार</string>
+    <string name="market_add_item">सूची बनाएं</string>
+    <string name="market_buy">खरीदें</string>
+    <string name="market_no_items">अभी कोई सूची नहीं</string>
+    <string name="market_field_title">शीर्षक</string>
+    <string name="market_field_description">विवरण</string>
+    <string name="market_field_price">मूल्य (TRG)</string>
+    <string name="market_create">बनाएं</string>
+    <string name="market_invalid">शीर्षक और मान्य मूल्य दर्ज करें</string>
+    <string name="market_seller_format">विक्रेता: %1$s</string>
+    <string name="market_price_format">%1$s TRG</string>
+
+    <string name="wallet_balance_title">मेरा बैलेंस</string>
+    <string name="wallet_deposit">जमा करें</string>
+    <string name="wallet_withdraw">निकालें</string>
+    <string name="wallet_show_qr">QR दिखाएं</string>
+    <string name="wallet_scan_qr">QR स्कैन करें</string>
+    <string name="wallet_history_title">लेन-देन इतिहास</string>
+    <string name="mining_stats_title">आँकड़े</string>
+    <string name="mining_stopped">रुका हुआ</string>
+    <string name="mining_started">माइनिंग शुरू हुई</string>
+    <string name="mining_hero_title">नेटवर्क पर TRG माइनिंग</string>
+    <string name="mining_start">शुरू</string>
+    <string name="settings_title">सेटिंग्स</string>
+    <string name="settings_language">भाषा</string>
+    <string name="chat_title">चैट</string>
+    <string name="pin_title">PIN कोड दर्ज करें</string>
+
+    <string name="action_send">भेजें</string>
+    <string name="action_receive">प्राप्त करें</string>
+    <string name="action_save">सहेजें</string>
+    <string name="action_cancel">रद्द करें</string>
+    <string name="action_close">बंद करें</string>
+    <string name="action_copy">कॉपी करें</string>
+    <string name="action_reset">रीसेट करें</string>
+    <string name="action_back">वापस</string>
+
+    <string name="wallet_chart_title">बैलेंस वृद्धि</string>
+    <string name="wallet_chart_subtitle">समय के साथ इनाम और ट्रांसफ़र</string>
+    <string name="wallet_chart_empty">अभी चार्ट डेटा नहीं है। माइनिंग शुरू करें!</string>
+    <string name="wallet_history_empty">अभी कोई लेन-देन नहीं</string>
+    <string name="wallet_history_empty_hint">माइनिंग इनाम और ट्रांसफ़र यहाँ दिखेंगे</string>
+    <string name="wallet_address_not_ready">वॉलेट पता अभी तैयार नहीं है</string>
+    <string name="wallet_address_format">पता: %1$s</string>
+
+    <string name="mining_realtime_subtitle">रीयल-टाइम में अपडेट होता है</string>
+    <string name="mining_total_blocks">कुल ब्लॉक</string>
+    <string name="mining_average_reward">औसत</string>
+    <string name="mining_online">ऑनलाइन</string>
+    <string name="mining_last_hash">अंतिम हैश</string>
+    <string name="mining_hint_start">माइनिंग शुरू करने के लिए टैप करें</string>
+    <string name="mining_hint_stop">माइनिंग रोकने के लिए टैप करें</string>
+    <string name="mining_active">सक्रिय</string>
+    <string name="mining_stop">रोकें</string>
+    <string name="mining_duration_days_hours">%1$dदि %2$dघं</string>
+    <string name="mining_duration_hours_minutes">%1$dघं %2$dमि</string>
+    <string name="mining_duration_minutes_seconds">%1$dमि %2$dसे</string>
+    <string name="mining_duration_seconds">%1$dसे</string>
+
+    <string name="profile_change_avatar">अवतार बदलें</string>
+    <string name="profile_nickname_hint">उपनाम</string>
+    <string name="profile_save_profile">प्रोफ़ाइल सहेजें</string>
+    <string name="profile_share_id">मेरी ID कॉपी करें</string>
+    <string name="profile_find_hint">दोस्त का Endpoint ID दर्ज करें</string>
+    <string name="profile_find_tip">Endpoint ID या उपनाम से दोस्त खोजें। अपनी ID कॉपी करें और दोस्त को भेजें।</string>
+    <string name="profile_search_hint">उपनाम से खोजें</string>
+    <string name="profile_search">खोजें</string>
+    <string name="profile_open_chat">चैट खोलें</string>
+    <string name="profile_contacts">संपर्क</string>
+    <string name="profile_refresh">रीफ़्रेश करें</string>
+    <string name="profile_no_contacts">अभी कोई संपर्क नहीं</string>
+    <string name="profile_no_contacts_hint">उपनाम से मित्र खोजें या नेटवर्क से जुड़ें</string>
+    <string name="profile_reputation_format">प्रतिष्ठा: %1$d · %2$s</string>
+    <string name="profile_id_unavailable">ID उपलब्ध नहीं</string>
+    <string name="profile_endpoint_unavailable">Endpoint ID उपलब्ध नहीं</string>
+    <string name="profile_endpoint_copied">Endpoint ID कॉपी हो गई</string>
+    <string name="profile_saved">प्रोफ़ाइल सहेजी गई</string>
+    <string name="profile_endpoint_invalid">अमान्य Endpoint ID</string>
+    <string name="profile_resolve_error">नोड हल करने में त्रुटि: %1$s</string>
+    <string name="profile_enter_nickname">खोजने के लिए उपनाम दर्ज करें</string>
+    <string name="profile_searching">नेटवर्क में खोज रहे हैं…</string>
+    <string name="profile_not_found">संपर्क नहीं मिला: खोजने के लिए कोई जुड़ा पीयर नहीं।</string>
+    <string name="profile_found">मिला: %1$s</string>
+    <string name="profile_found_network">नेटवर्क पर मिला: %1$s</string>
+    <string name="profile_pex_hint">मोबाइल डेटा पर, खोज जुड़े पीयर्स की श्रृंखला (PEX) से होती है। कम से कम एक ज्ञात पीयर आवश्यक है।</string>
+    <string name="profile_peer_online">ऑनलाइन</string>
+    <string name="profile_peer_found">मिला</string>
+    <string name="profile_choose_avatar">अवतार चुनें</string>
+    <string name="profile_gallery_error">गैलरी खोलने में विफल</string>
+    <string name="profile_saving_avatar">अवतार सहेजा जा रहा है…</string>
+    <string name="profile_avatar_save_error">अवतार सहेजने में विफल</string>
+    <string name="profile_avatar_updated">अवतार अपडेट हो गया</string>
+
+    <string name="settings_subtitle">रूप, माइनिंग और नेटवर्क</string>
+    <string name="settings_theme">थीम</string>
+    <string name="settings_theme_subtitle">हल्की या गहरी</string>
+    <string name="settings_pin">PIN कोड</string>
+    <string name="settings_pin_not_set">सेट नहीं</string>
+    <string name="settings_export_keys">कुंजियाँ निर्यात करें</string>
+    <string name="settings_export_keys_subtitle">निजी कुंजी का बैकअप</string>
+    <string name="settings_reset_counter">काउंटर रीसेट करें</string>
+    <string name="settings_reset_counter_subtitle">ब्लॉक काउंटर रीसेट करें</string>
+    <string name="settings_network_nodes">नेटवर्क नोड्स</string>
+    <string name="settings_connected_zero">जुड़े: 0</string>
+    <string name="settings_connected_format">जुड़े: %1$d</string>
+    <string name="settings_about">परिचय</string>
+    <string name="settings_footer">Trigger — विकेंद्रीकृत नेटवर्क</string>
+    <string name="settings_reset_title">काउंटर रीसेट करें?</string>
+    <string name="settings_reset_message">ब्लॉक काउंटर रीसेट हो जाएगा। लेन-देन इतिहास और चेन अपरिवर्तित रहेंगे।</string>
+    <string name="settings_counter_reset_toast">ब्लॉक काउंटर रीसेट हो गया</string>
+    <string name="settings_pin_set">सेट · बदलने के लिए टैप करें</string>
+    <string name="settings_pin_not_set_action">सेट नहीं · सेट करने के लिए टैप करें</string>
+
+    <string name="transfer_title">TRG ट्रांसफ़र करें</string>
+    <string name="transfer_available">उपलब्ध</string>
+    <string name="transfer_recipient_address">प्राप्तकर्ता का पता</string>
+    <string name="transfer_amount">राशि (TRG)</string>
+    <string name="transfer_fee">शुल्क (1%)</string>
+    <string name="transfer_total">कुल डेबिट</string>
+    <string name="transfer_hint" formatted="false">ट्रांसफ़र Iroh पर चलते हैं। 1% शुल्क बर्न होता है।</string>
+    <string name="transfer_enter_recipient">प्राप्तकर्ता का पता दर्ज करें</string>
+    <string name="transfer_enter_amount">राशि दर्ज करें</string>
+    <string name="transfer_qr_no_wallet">QR कोड में कोई वॉलेट पता नहीं मिला</string>
+
+    <string name="qr_read_error">QR कोड पढ़ने में विफल</string>
+    <string name="scan_cancelled">स्कैन रद्द किया गया</string>
+    <string name="qr_no_address">QR कोड में कोई पता नहीं मिला</string>
+    <string name="qr_scanned_title">QR कोड स्कैन हो गया</string>
+    <string name="qr_scanned_message">वॉलेट पता:\n\n%1$s</string>
+
+    <string name="tx_sent">भेजा गया</string>
+    <string name="tx_received">प्राप्त हुआ</string>
+    <string name="tx_fee_burn">शुल्क बर्न</string>
+    <string name="tx_mining_reward">माइनिंग इनाम</string>
+    <string name="status_confirmed">पुष्ट</string>
+    <string name="tx_hash_copied">हैश कॉपी हो गया</string>
+
+    <string name="action_ok">ठीक है</string>
+    <string name="action_skip">छोड़ें</string>
+    <string name="action_connect">जोड़ें</string>
+    <string name="action_delete">हटाएं</string>
+    <string name="action_continue">जारी रखें</string>
+    <string name="warning_title">चेतावनी</string>
+    <string name="version_format">संस्करण %1$s</string>
+    <string name="avatar">अवतार</string>
+
+    <string name="network_searching_global">वैश्विक नेटवर्क में नोड्स खोज रहे हैं…</string>
+    <string name="network_local_format">स्थानीय नेटवर्क: %1$d नोड्स</string>
+    <string name="network_switched_format">कनेक्शन %1$s पर स्विच हो गया</string>
+    <string name="network_other">अन्य नेटवर्क</string>
+    <string name="network_none">कोई नेटवर्क नहीं</string>
+    <string name="toast_address_copied">पता कॉपी हो गया</string>
+    <string name="toast_searching_nodes">नोड्स खोज रहे हैं…</string>
+    <string name="toast_enter_endpoint">Endpoint ID दर्ज करें</string>
+    <string name="toast_connected_format">जुड़ा: %1$s</string>
+    <string name="toast_connect_failed_format">जुड़ने में विफल: %1$s</string>
+    <string name="toast_connecting_format">नोड %1$s से जुड़ रहे हैं…</string>
+    <string name="toast_chain_gap">अंतराल मिला। सिंक हो रहा है…</string>
+    <string name="toast_block_received">पीयर से ब्लॉक प्राप्त हुआ!</string>
+    <string name="toast_chain_synced">चेन सिंक हो गई!</string>
+
+    <string name="notification_mining_title">Trigger माइनिंग</string>
+    <string name="notification_mining_signing">Trigger: ब्लॉक साइनिंग</string>
+    <string name="notification_mining_channel_desc">Trigger ब्लॉक साइनिंग पृष्ठभूमि सेवा</string>
+    <string name="notification_message_title_format">%1$s से नया संदेश</string>
+    <string name="notification_contact_fallback">संपर्क</string>
+    <string name="notification_mining_reward_title_format">आपने %1$s TRG कमाए</string>
+    <string name="notification_mining_reward_text">माइनिंग इनाम आपके बैलेंस में जमा हुआ</string>
+    <string name="notification_channel_messages">संदेश</string>
+    <string name="notification_channel_messages_desc">नए संदेशों की सूचनाएँ</string>
+    <string name="notification_channel_mining">माइनिंग इनाम</string>
+    <string name="notification_channel_mining_desc">जमा TRG इनामों की सूचनाएँ</string>
+
+    <string name="error_generate_validator_key">वैलिडेटर कुंजी बनाने में विफल</string>
+    <string name="error_invalid_endpoint_id_format">अमान्य Endpoint ID: %1$s</string>
+    <string name="error_peer_not_found_dns">DNS में पीयर नहीं मिला</string>
+    <string name="error_resolve_dns_format">DNS के माध्यम से नोड हल करने में त्रुटि: %1$s</string>
+
+    <string name="chat_iroh_title">Iroh चैट</string>
+    <string name="chat_iroh_p2p_title">Iroh P2P चैट</string>
+    <string name="chat_open">चैट खोलें</string>
+    <string name="chat_my_endpoint_placeholder">मेरा Endpoint ID: -</string>
+    <string name="chat_exchange_endpoint_hint">अपने संपर्क के साथ Endpoint ID साझा करें</string>
+    <string name="chat_connected_peers">जुड़े संपर्क</string>
+    <string name="chat_empty_hint">अभी कोई संपर्क नहीं मिला। अपना Endpoint ID किसी अन्य डिवाइस को भेजें और उसे जुड़ने के लिए कहें — अन्य नोड्स स्वतः खोजे जाएंगे।</string>
+    <string name="chat_message_hint">संदेश…</string>
+    <string name="chat_searching_format">नेटवर्क में “%1$s” खोज रहे हैं…</string>
+    <string name="chat_found_format">मिला: %1$s\nEndpoint ID: %2$s</string>
+    <string name="chat_found_network_format">नेटवर्क पर मिला: %1$s\nEndpoint ID: %2$s</string>
+    <string name="chat_my_endpoint_starting">मेरा Endpoint ID: शुरू हो रहा है…</string>
+    <string name="chat_my_endpoint_format">मेरा Endpoint ID: %1$s\n(कॉपी करने के लिए टैप करें)</string>
+    <string name="chat_iroh_starting">Iroh शुरू हो रहा है…</string>
+    <string name="chat_ready">तैयार: सूची से एक संपर्क चुनें</string>
+    <string name="chat_peer_connected">जुड़ा</string>
+    <string name="chat_peer_found_on_send">मिला, भेजने पर जुड़ेगा</string>
+    <string name="chat_connecting"> · जुड़ रहे हैं…</string>
+    <string name="chat_connected"> · जुड़ा</string>
+    <string name="chat_error_format"> · त्रुटि: %1$s</string>
+    <string name="chat_peer_not_selected">चयनित नहीं</string>
+    <string name="toast_no_peer_selected">कोई संपर्क चयनित नहीं</string>
+    <string name="toast_message_from_format">%1$s से संदेश</string>
+    <string name="chat_self">आप</string>
+    <string name="chat_peer">संपर्क</string>
+
+    <string name="profile_title">प्रोफ़ाइल</string>
+    <string name="profile_avatar">अवतार</string>
+    <string name="profile_copy_endpoint">मेरा Endpoint ID कॉपी करें</string>
+
+    <string name="nodes_list_title">नोड सूची</string>
+    <string name="nodes_empty">कोई जुड़ा नोड नहीं</string>
+    <string name="nodes_my_endpoint_format">मेरा Endpoint ID: %1$s</string>
+
+    <string name="pin_enter_title">PIN कोड दर्ज करें</string>
+    <string name="pin_enter_subtitle">ऐप अनलॉक करने के लिए PIN कोड दर्ज करें</string>
+    <string name="pin_forgot">PIN भूल गए?</string>
+    <string name="pin_error_min_4">कम से कम 4 अंक दर्ज करें</string>
+    <string name="pin_error_incorrect">गलत PIN कोड</string>
+    <string name="pin_change_title">PIN कोड बदलें</string>
+    <string name="pin_setup_title">PIN कोड सेट करें</string>
+    <string name="pin_security_hint">सुरक्षा के लिए मजबूत कोड का उपयोग करें</string>
+    <string name="pin_current_hint">वर्तमान PIN कोड</string>
+    <string name="pin_new_hint">नया PIN कोड</string>
+    <string name="pin_confirm_hint">PIN कोड की पुष्टि करें</string>
+    <string name="pin_label">PIN कोड</string>
+    <string name="pin_change_action">PIN बदलें</string>
+    <string name="pin_save_action">PIN सहेजें</string>
+    <string name="pin_hide">PIN कोड छिपाएं</string>
+    <string name="pin_show">PIN कोड दिखाएं</string>
+    <string name="pin_requirements_title">PIN आवश्यकताएँ</string>
+    <string name="pin_req_length">कम से कम 4 अंक</string>
+    <string name="pin_req_unique">कोई दोहराए गए अंक नहीं (वैकल्पिक)</string>
+    <string name="pin_warning">PIN कोड के बिना, ऐप डेटा असुरक्षित है</string>
+    <string name="pin_strength_weak">कमज़ोर</string>
+    <string name="pin_strength_medium">मध्यम</string>
+    <string name="pin_strength_strong">मजबूत</string>
+    <string name="pin_strength_format">शक्ति: %1$s</string>
+    <string name="pin_error_length">PIN में 4–6 अंक होने चाहिए</string>
+    <string name="pin_error_mismatch">PIN कोड मेल नहीं खाते</string>
+    <string name="pin_set_toast">PIN कोड सेट हो गया</string>
+    <string name="pin_error_current_incorrect">वर्तमान PIN कोड गलत है</string>
+    <string name="pin_error_new_length">नए PIN में 4–6 अंक होने चाहिए</string>
+    <string name="pin_updated_toast">PIN कोड अपडेट हो गया</string>
+    <string name="pin_error_enter_current_to_delete">हटाने के लिए वर्तमान PIN कोड दर्ज करें</string>
+    <string name="pin_delete_title">PIN कोड हटाएं?</string>
+    <string name="pin_delete_message">ऐप सुरक्षा बंद हो जाएगी। डेटा PIN के बिना सुलभ होगा।</string>
+    <string name="pin_deleted_toast">PIN कोड हटा दिया गया</string>
+    <string name="pin_skip_title">PIN कोड के बिना जारी रखें?</string>
+    <string name="pin_skip_message">PIN कोड के बिना, ऐप डेटा असुरक्षित है। आप इसे बाद में सेटिंग्स में सेट कर सकते हैं।</string>
+    <string name="pin_reset_toast">PIN कोड रीसेट हो गया</string>
+
+    <string name="error_private_key_unavailable">निजी कुंजी प्राप्त करने में विफल</string>
+    <string name="private_key_not_created">कुंजी अभी नहीं बनाई गई</string>
+    <string name="private_key_copied">निजी कुंजी कॉपी हो गई</string>
+    <string name="private_key_backup_subtitle">वॉलेट बैकअप</string>
+    <string name="private_key_warning">अपनी निजी कुंजी कभी किसी को न दिखाएं। इसे खोने पर वॉलेट तक पहुँच खो जाएगी।</string>
+    <string name="private_key_label">निजी कुंजी</string>
+    <string name="private_key_show">निजी कुंजी दिखाएं</string>
+    <string name="private_key_hide">निजी कुंजी छिपाएं</string>
+    <string name="error_enter_private_key">निजी कुंजी दर्ज करें</string>
+    <string name="error_private_key_not_found">डिवाइस पर निजी कुंजी नहीं मिली</string>
+    <string name="error_private_key_invalid">अमान्य निजी कुंजी</string>
+    <string name="forgot_pin_title">PIN कोड रीसेट करें</string>
+    <string name="forgot_pin_subtitle">अपनी निजी कुंजी से अपनी पहचान की पुष्टि करें</string>
+    <string name="forgot_pin_warning">निजी कुंजी वॉलेट तक पूर्ण पहुँच देती है। इसे केवल अपने डिवाइस पर दर्ज करें और कभी किसी को न दिखाएं।</string>
+    <string name="forgot_pin_action">PIN रीसेट करें</string>
+
+    <string name="reputation_level_newbie">नौसिखिया</string>
+    <string name="reputation_level_reliable">विश्वसनीय</string>
+    <string name="reputation_level_expert">विशेषज्ञ</string>
+
+    <string name="error_wallet_unavailable">वॉलेट उपलब्ध नहीं</string>
+    <string name="error_invalid_recipient">अमान्य प्राप्तकर्ता पता</string>
+    <string name="error_self_transfer">आप अपने आप को ट्रांसफ़र नहीं भेज सकते</string>
+    <string name="error_invalid_amount">अमान्य राशि</string>
+    <string name="error_amount_positive">राशि शून्य से अधिक होनी चाहिए</string>
+    <string name="error_insufficient_funds_fee">शुल्क सहित अपर्याप्त धनराशि</string>
+    <string name="error_signing_key_unavailable">साइनिंग के लिए कुंजी प्राप्त करने में विफल</string>
+    <string name="error_recipient_not_found">नेटवर्क पर प्राप्तकर्ता नहीं मिला। पीयर से जुड़ें और पुनः प्रयास करें।</string>
+    <string name="error_sign_transfer">ट्रांसफ़र साइन करने में विफल</string>
+    <string name="transfer_sent_format">ट्रांसफ़र भेजा गया: %1$s TRG</string>
+
+    <string name="chart_start">शुरू</string>
+    <string name="chart_now">अब</string>
+
+    <string name="onboarding_welcome">विकेंद्रीकृत नेटवर्क में आपका स्वागत है</string>
+    <string name="onboarding_feature_phone">आपका फ़ोन नेटवर्क का हिस्सा है</string>
+    <string name="onboarding_feature_mine">फ़ोन चालू रहते हुए माइन करें</string>
+    <string name="onboarding_feature_no_servers">कोई सर्वर या बिचौलिया नहीं</string>
+
+    <string name="wallet_qr_title">वॉलेट QR कोड</string>
+    <string name="wallet_qr_hint">TRG प्राप्त करने के लिए यह कोड प्रेषक को दिखाएं</string>
+    <string name="wallet_qr_content_desc">वॉलेट पता QR कोड</string>
+    <string name="wallet_copy_address">पता कॉपी करें</string>
+
+    <string name="qr_scanner_hint">कैमरा QR कोड की ओर करें</string>
+    <string name="qr_scanner_subhint">कोड को फ़्रेम में रखें — इसे स्वतः पहचान लिया जाएगा</string>
+
+    <string name="about_description">विकेंद्रीकृत ब्लॉकचेन नेटवर्क नोड: सर्वर के बिना माइनिंग और सीधा संचार।</string>
+
+    <string name="tx_details_title">लेन-देन विवरण</string>
+    <string name="tx_details_subtitle">Trigger वॉलेट में लेन-देन</string>
+    <string name="tx_type">प्रकार</string>
+    <string name="tx_date">दिनांक</string>
+    <string name="tx_status">स्थिति</string>
+    <string name="tx_hash">हैश</string>
+    <string name="tx_copy_hash">हैश कॉपी करें</string>
+    <string name="nodes_peer_connected">जुड़ा</string>
+    <string name="nodes_peer_found">मिला</string>
+    <string name="error_qr_generate">QR कोड बनाने में विफल</string>
+    <string name="error_camera_permission">स्कैनिंग के लिए कैमरा अनुमति आवश्यक है</string>
+
+    <string name="label_id_format">ID: %1$s</string>
+    <string name="profile_endpoint_id_format">Endpoint ID: %1$s</string>
+    <string name="amount_zero_aura">0 TRG</string>
+    <string name="amount_plus_zero_aura">+0 TRG</string>
+    <string name="amount_format">%1$s TRG</string>
+    <string name="amount_signed_format">%1$s%2$s TRG</string>
+    <string name="placeholder_dash">—</string>
+    <string name="mining_protocol_poa">PoA</string>
+    <string name="number_zero">0</string>
+    <string name="hint_address_placeholder">0x...</string>
+    <string name="hint_amount_placeholder">0.00</string>
+    <string name="token_aura">TRG</string>
+    <string name="brand_upper">TRIGGER</string>
+    <string name="pin_key_0">0</string>
+    <string name="pin_key_1">1</string>
+    <string name="pin_key_2">2</string>
+    <string name="pin_key_3">3</string>
+    <string name="pin_key_4">4</string>
+    <string name="pin_key_5">5</string>
+    <string name="pin_key_6">6</string>
+    <string name="pin_key_7">7</string>
+    <string name="pin_key_8">8</string>
+    <string name="pin_key_9">9</string>
+    <string name="pin_key_delete">⌫</string>
+    <string name="hint_private_key_placeholder">0x...</string>
+    <string name="network_wifi">Wi-Fi</string>
+    <string name="network_cellular">4G</string>
+    <string name="network_ethernet">Ethernet</string>
+    <string name="network_vpn">VPN</string>
+    <string name="app_version_name_format">%1$s v%2$s</string>
+    <string name="peer_unknown">अज्ञात पीयर</string>
+
+    <string-array name="peer_adjectives">
+        <item>बहादुर</item>
+        <item>तेज़</item>
+        <item>चतुर</item>
+        <item>स्मार्ट</item>
+        <item>मज़बूत</item>
+        <item>शांत</item>
+        <item>खुशमिजाज़</item>
+        <item>शांत</item>
+        <item>निडर</item>
+        <item>बुद्धिमान</item>
+        <item>साहसी</item>
+        <item>वफ़ादार</item>
+        <item>अडिग</item>
+        <item>चमकीला</item>
+        <item>तेजस्वी</item>
+        <item>स्वतंत्र</item>
+        <item>भयंकर</item>
+        <item>चालाक</item>
+        <item>हल्का</item>
+        <item>फौलादी</item>
+        <item>भरोसेमंद</item>
+        <item>वीर</item>
+        <item>निर्णायक</item>
+        <item>फुर्तीला</item>
+    </string-array>
+
+    <string-array name="peer_nouns">
+        <item>बिल्ली</item>
+        <item>लोमड़ी</item>
+        <item>भेड़िया</item>
+        <item>भालू</item>
+        <item>चील</item>
+        <item>बाज</item>
+        <item>बाघ</item>
+        <item>शेर</item>
+        <item>तेंदुआ</item>
+        <item>साही</item>
+        <item>खरगोश</item>
+        <item>बीवर</item>
+        <item>डॉल्फिन</item>
+        <item>व्हेल</item>
+        <item>ड्रैगन</item>
+        <item>फ़ीनिक्स</item>
+        <item>बाज़</item>
+        <item>कौआ</item>
+        <item>मूस</item>
+        <item>हिरण</item>
+        <item>पेंगुइन</item>
+        <item>चीता</item>
+        <item>लिंक्स</item>
+        <item>कोयोट</item>
+    </string-array>
+</resources>

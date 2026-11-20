@@ -1,0 +1,430 @@
+<resources>
+    <string name="app_name">Trigger</string>
+
+    <string name="language_title">选择语言</string>
+    <string name="language_subtitle">稍后可在设置中更改</string>
+    <string name="language_en">English</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_es">Español</string>
+    <string name="language_de">Deutsch</string>
+    <string name="language_zh">中文</string>
+    <string name="language_fr">Français</string>
+    <string name="language_ar">العربية</string>
+    <string name="language_hi">हिन्दी</string>
+
+    <string name="onboarding_title_1">网络节点</string>
+    <string name="onboarding_text_1">你的手机是区块链网络的一个节点。</string>
+    <string name="onboarding_subtitle_1">你的手机是网络的一部分</string>
+    <string name="onboarding_title_2">TRG 挖矿</string>
+    <string name="onboarding_text_2">只需保持手机开机即可挖掘 TRG。网络越稳定，奖励越高。</string>
+    <string name="onboarding_subtitle_2">保持手机开机即可挖矿</string>
+    <string name="onboarding_title_3">直接沟通</string>
+    <string name="onboarding_text_3">直接与其他用户聊天。无需服务器或中间人。</string>
+    <string name="onboarding_subtitle_3">无需服务器或中间人</string>
+    <string name="onboarding_step">第 %1$d 步，共 %2$d 步</string>
+    <string name="onboarding_next">下一步</string>
+    <string name="onboarding_start">开始</string>
+
+    <string name="nav_wallet">钱包</string>
+    <string name="nav_mining">挖矿</string>
+    <string name="nav_profile">个人资料</string>
+    <string name="nav_settings">设置</string>
+    <string name="nav_market">市场</string>
+    <string name="network_no_connection">无网络</string>
+    <string name="market_title">市场</string>
+    <string name="market_add_item">发布商品</string>
+    <string name="market_buy">购买</string>
+    <string name="market_no_items">暂无商品</string>
+    <string name="market_field_title">标题</string>
+    <string name="market_field_description">描述</string>
+    <string name="market_field_price">价格 (TRG)</string>
+    <string name="market_create">发布</string>
+    <string name="market_invalid">请输入标题和有效价格</string>
+    <string name="market_seller_format">卖家：%1$s</string>
+    <string name="market_price_format">%1$s TRG</string>
+
+    <string name="wallet_balance_title">我的余额</string>
+    <string name="wallet_deposit">充值</string>
+    <string name="wallet_withdraw">提现</string>
+    <string name="wallet_show_qr">显示二维码</string>
+    <string name="wallet_scan_qr">扫描二维码</string>
+    <string name="wallet_history_title">交易记录</string>
+    <string name="mining_stats_title">统计</string>
+    <string name="mining_stopped">已停止</string>
+    <string name="mining_started">挖矿已启动</string>
+    <string name="mining_hero_title">网络中的 TRG 挖矿</string>
+    <string name="mining_start">开始</string>
+    <string name="settings_title">设置</string>
+    <string name="settings_language">语言</string>
+    <string name="chat_title">聊天</string>
+    <string name="pin_title">输入 PIN 码</string>
+
+    <string name="action_send">发送</string>
+    <string name="action_receive">接收</string>
+    <string name="action_save">保存</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_close">关闭</string>
+    <string name="action_copy">复制</string>
+    <string name="action_reset">重置</string>
+    <string name="action_back">返回</string>
+
+    <string name="wallet_chart_title">余额增长</string>
+    <string name="wallet_chart_subtitle">奖励和转账随时间的变化</string>
+    <string name="wallet_chart_empty">暂无图表数据。开始挖矿吧！</string>
+    <string name="wallet_history_empty">暂无交易</string>
+    <string name="wallet_history_empty_hint">挖矿奖励和转账将显示在这里</string>
+    <string name="wallet_address_not_ready">钱包地址尚未准备好</string>
+    <string name="wallet_address_format">地址：%1$s</string>
+
+    <string name="mining_realtime_subtitle">实时更新</string>
+    <string name="mining_total_blocks">总区块数</string>
+    <string name="mining_average_reward">平均</string>
+    <string name="mining_online">在线</string>
+    <string name="mining_last_hash">最新哈希</string>
+    <string name="mining_hint_start">点击开始挖矿</string>
+    <string name="mining_hint_stop">点击停止挖矿</string>
+    <string name="mining_active">活跃</string>
+    <string name="mining_stop">停止</string>
+    <string name="mining_duration_days_hours">%1$d天 %2$d小时</string>
+    <string name="mining_duration_hours_minutes">%1$d小时 %2$d分</string>
+    <string name="mining_duration_minutes_seconds">%1$d分 %2$d秒</string>
+    <string name="mining_duration_seconds">%1$d秒</string>
+
+    <string name="profile_change_avatar">更换头像</string>
+    <string name="profile_nickname_hint">昵称</string>
+    <string name="profile_save_profile">保存个人资料</string>
+    <string name="profile_share_id">复制我的ID</string>
+    <string name="profile_find_hint">输入好友的 Endpoint ID</string>
+    <string name="profile_find_tip">通过 Endpoint ID 或昵称查找好友。复制你的 ID 并发送给好友。</string>
+    <string name="profile_search_hint">按昵称搜索</string>
+    <string name="profile_search">查找</string>
+    <string name="profile_open_chat">打开聊天</string>
+    <string name="profile_contacts">联系人</string>
+    <string name="profile_refresh">刷新</string>
+    <string name="profile_no_contacts">暂无联系人</string>
+    <string name="profile_no_contacts_hint">按昵称查找朋友或连接到网络</string>
+    <string name="profile_reputation_format">信誉：%1$d · %2$s</string>
+    <string name="profile_id_unavailable">ID 不可用</string>
+    <string name="profile_endpoint_unavailable">Endpoint ID 不可用</string>
+    <string name="profile_endpoint_copied">Endpoint ID 已复制</string>
+    <string name="profile_saved">个人资料已保存</string>
+    <string name="profile_endpoint_invalid">Endpoint ID 无效</string>
+    <string name="profile_resolve_error">节点解析错误：%1$s</string>
+    <string name="profile_enter_nickname">输入昵称以搜索</string>
+    <string name="profile_searching">正在搜索网络…</string>
+    <string name="profile_not_found">未找到联系人：没有可搜索的已连接节点。</string>
+    <string name="profile_found">已找到：%1$s</string>
+    <string name="profile_found_network">在网络中找到：%1$s</string>
+    <string name="profile_pex_hint">在移动数据下，搜索会通过已连接节点的链路（PEX）进行。至少需要一个已知节点。</string>
+    <string name="profile_peer_online">在线</string>
+    <string name="profile_peer_found">已找到</string>
+    <string name="profile_choose_avatar">选择头像</string>
+    <string name="profile_gallery_error">无法打开相册</string>
+    <string name="profile_saving_avatar">正在保存头像…</string>
+    <string name="profile_avatar_save_error">无法保存头像</string>
+    <string name="profile_avatar_updated">头像已更新</string>
+
+    <string name="settings_subtitle">外观、挖矿和网络</string>
+    <string name="settings_theme">主题</string>
+    <string name="settings_theme_subtitle">浅色或深色</string>
+    <string name="settings_pin">PIN 码</string>
+    <string name="settings_pin_not_set">未设置</string>
+    <string name="settings_export_keys">导出密钥</string>
+    <string name="settings_export_keys_subtitle">私钥备份</string>
+    <string name="settings_reset_counter">重置计数器</string>
+    <string name="settings_reset_counter_subtitle">重置区块计数器</string>
+    <string name="settings_network_nodes">网络节点</string>
+    <string name="settings_connected_zero">已连接：0</string>
+    <string name="settings_connected_format">已连接：%1$d</string>
+    <string name="settings_about">关于</string>
+    <string name="settings_footer">Trigger — 去中心化网络</string>
+    <string name="settings_reset_title">重置计数器？</string>
+    <string name="settings_reset_message">区块计数器将被重置。交易记录和链将保持不变。</string>
+    <string name="settings_counter_reset_toast">区块计数器已重置</string>
+    <string name="settings_pin_set">已设置 · 点击更改</string>
+    <string name="settings_pin_not_set_action">未设置 · 点击设置</string>
+
+    <string name="transfer_title">转账 TRG</string>
+    <string name="transfer_available">可用</string>
+    <string name="transfer_recipient_address">收款地址</string>
+    <string name="transfer_amount">金额（TRG）</string>
+    <string name="transfer_fee">手续费（1%）</string>
+    <string name="transfer_total">扣除总额</string>
+    <string name="transfer_hint" formatted="false">转账通过 Iroh 进行。1% 的手续费将被销毁。</string>
+    <string name="transfer_enter_recipient">输入收款地址</string>
+    <string name="transfer_enter_amount">输入金额</string>
+    <string name="transfer_qr_no_wallet">二维码中未找到钱包地址</string>
+
+    <string name="qr_read_error">无法读取二维码</string>
+    <string name="scan_cancelled">扫描已取消</string>
+    <string name="qr_no_address">二维码中未找到地址</string>
+    <string name="qr_scanned_title">二维码已扫描</string>
+    <string name="qr_scanned_message">钱包地址：\n\n%1$s</string>
+
+    <string name="tx_sent">已发送</string>
+    <string name="tx_received">已接收</string>
+    <string name="tx_fee_burn">手续费销毁</string>
+    <string name="tx_mining_reward">挖矿奖励</string>
+    <string name="status_confirmed">已确认</string>
+    <string name="tx_hash_copied">哈希已复制</string>
+
+    <string name="action_ok">确定</string>
+    <string name="action_skip">跳过</string>
+    <string name="action_connect">连接</string>
+    <string name="action_delete">删除</string>
+    <string name="action_continue">继续</string>
+    <string name="warning_title">警告</string>
+    <string name="version_format">版本 %1$s</string>
+    <string name="avatar">头像</string>
+
+    <string name="network_searching_global">正在全局网络中搜索节点…</string>
+    <string name="network_local_format">本地网络：%1$d 个节点</string>
+    <string name="network_switched_format">连接已切换到 %1$s</string>
+    <string name="network_other">其他网络</string>
+    <string name="network_none">无网络</string>
+    <string name="toast_address_copied">地址已复制</string>
+    <string name="toast_searching_nodes">正在搜索节点…</string>
+    <string name="toast_enter_endpoint">输入 Endpoint ID</string>
+    <string name="toast_connected_format">已连接：%1$s</string>
+    <string name="toast_connect_failed_format">连接失败：%1$s</string>
+    <string name="toast_connecting_format">正在连接节点 %1$s…</string>
+    <string name="toast_chain_gap">检测到缺口。正在同步…</string>
+    <string name="toast_block_received">已从节点接收到区块！</string>
+    <string name="toast_chain_synced">链已同步！</string>
+
+    <string name="notification_mining_title">Trigger 挖矿</string>
+    <string name="notification_mining_signing">Trigger：区块签名</string>
+    <string name="notification_mining_channel_desc">Trigger 区块签名后台服务</string>
+    <string name="notification_message_title_format">来自 %1$s 的新消息</string>
+    <string name="notification_contact_fallback">联系人</string>
+    <string name="notification_mining_reward_title_format">你获得了 %1$s TRG</string>
+    <string name="notification_mining_reward_text">挖矿奖励已存入你的余额</string>
+    <string name="notification_channel_messages">消息</string>
+    <string name="notification_channel_messages_desc">新消息通知</string>
+    <string name="notification_channel_mining">挖矿奖励</string>
+    <string name="notification_channel_mining_desc">TRG 奖励入账通知</string>
+
+    <string name="error_generate_validator_key">无法生成验证者密钥</string>
+    <string name="error_invalid_endpoint_id_format">Endpoint ID 无效：%1$s</string>
+    <string name="error_peer_not_found_dns">在 DNS 中未找到节点</string>
+    <string name="error_resolve_dns_format">通过 DNS 解析节点时出错：%1$s</string>
+
+    <string name="chat_iroh_title">Iroh 聊天</string>
+    <string name="chat_iroh_p2p_title">Iroh P2P 聊天</string>
+    <string name="chat_open">打开聊天</string>
+    <string name="chat_my_endpoint_placeholder">我的 Endpoint ID：-</string>
+    <string name="chat_exchange_endpoint_hint">与联系人交换 Endpoint ID</string>
+    <string name="chat_connected_peers">已连接的联系人</string>
+    <string name="chat_empty_hint">尚未找到联系人。将你的 Endpoint ID 发送到另一台设备并请对方连接——其他节点将被自动发现。</string>
+    <string name="chat_message_hint">消息…</string>
+    <string name="chat_searching_format">正在网络中搜索“%1$s”…</string>
+    <string name="chat_found_format">已找到：%1$s\nEndpoint ID：%2$s</string>
+    <string name="chat_found_network_format">在网络中找到：%1$s\nEndpoint ID：%2$s</string>
+    <string name="chat_my_endpoint_starting">我的 Endpoint ID：正在启动…</string>
+    <string name="chat_my_endpoint_format">我的 Endpoint ID：%1$s\n（点击复制）</string>
+    <string name="chat_iroh_starting">正在启动 Iroh…</string>
+    <string name="chat_ready">就绪：从列表中选择联系人</string>
+    <string name="chat_peer_connected">已连接</string>
+    <string name="chat_peer_found_on_send">已找到，发送时连接</string>
+    <string name="chat_connecting"> · 正在连接…</string>
+    <string name="chat_connected"> · 已连接</string>
+    <string name="chat_error_format"> · 错误：%1$s</string>
+    <string name="chat_peer_not_selected">未选择</string>
+    <string name="toast_no_peer_selected">未选择联系人</string>
+    <string name="toast_message_from_format">来自 %1$s 的消息</string>
+    <string name="chat_self">你</string>
+    <string name="chat_peer">联系人</string>
+
+    <string name="profile_title">个人资料</string>
+    <string name="profile_avatar">头像</string>
+    <string name="profile_copy_endpoint">复制我的 Endpoint ID</string>
+
+    <string name="nodes_list_title">节点列表</string>
+    <string name="nodes_empty">没有已连接的节点</string>
+    <string name="nodes_my_endpoint_format">我的 Endpoint ID：%1$s</string>
+
+    <string name="pin_enter_title">输入 PIN 码</string>
+    <string name="pin_enter_subtitle">输入 PIN 码以解锁应用</string>
+    <string name="pin_forgot">忘记 PIN？</string>
+    <string name="pin_error_min_4">至少输入 4 位数字</string>
+    <string name="pin_error_incorrect">PIN 码错误</string>
+    <string name="pin_change_title">更改 PIN 码</string>
+    <string name="pin_setup_title">设置 PIN 码</string>
+    <string name="pin_security_hint">为了安全，请使用强密码</string>
+    <string name="pin_current_hint">当前 PIN 码</string>
+    <string name="pin_new_hint">新 PIN 码</string>
+    <string name="pin_confirm_hint">确认 PIN 码</string>
+    <string name="pin_label">PIN 码</string>
+    <string name="pin_change_action">更改 PIN</string>
+    <string name="pin_save_action">保存 PIN</string>
+    <string name="pin_hide">隐藏 PIN 码</string>
+    <string name="pin_show">显示 PIN 码</string>
+    <string name="pin_requirements_title">PIN 要求</string>
+    <string name="pin_req_length">至少 4 位数字</string>
+    <string name="pin_req_unique">不得有重复数字（可选）</string>
+    <string name="pin_warning">没有 PIN 码，应用数据将不受保护</string>
+    <string name="pin_strength_weak">弱</string>
+    <string name="pin_strength_medium">中</string>
+    <string name="pin_strength_strong">强</string>
+    <string name="pin_strength_format">强度：%1$s</string>
+    <string name="pin_error_length">PIN 必须包含 4–6 位数字</string>
+    <string name="pin_error_mismatch">PIN 码不一致</string>
+    <string name="pin_set_toast">PIN 码已设置</string>
+    <string name="pin_error_current_incorrect">当前 PIN 码错误</string>
+    <string name="pin_error_new_length">新 PIN 必须包含 4–6 位数字</string>
+    <string name="pin_updated_toast">PIN 码已更新</string>
+    <string name="pin_error_enter_current_to_delete">输入当前 PIN 码以删除</string>
+    <string name="pin_delete_title">删除 PIN 码？</string>
+    <string name="pin_delete_message">应用保护将被禁用。无需 PIN 即可访问数据。</string>
+    <string name="pin_deleted_toast">PIN 码已删除</string>
+    <string name="pin_skip_title">不设置 PIN 码继续？</string>
+    <string name="pin_skip_message">没有 PIN 码，应用数据将不受保护。你可以稍后在设置中设置。</string>
+    <string name="pin_reset_toast">PIN 码已重置</string>
+
+    <string name="error_private_key_unavailable">无法获取私钥</string>
+    <string name="private_key_not_created">密钥尚未创建</string>
+    <string name="private_key_copied">私钥已复制</string>
+    <string name="private_key_backup_subtitle">钱包备份</string>
+    <string name="private_key_warning">切勿向任何人展示你的私钥。如果丢失，将无法访问钱包。</string>
+    <string name="private_key_label">私钥</string>
+    <string name="private_key_show">显示私钥</string>
+    <string name="private_key_hide">隐藏私钥</string>
+    <string name="error_enter_private_key">输入私钥</string>
+    <string name="error_private_key_not_found">设备上未找到私钥</string>
+    <string name="error_private_key_invalid">私钥无效</string>
+    <string name="forgot_pin_title">重置 PIN 码</string>
+    <string name="forgot_pin_subtitle">使用私钥确认你的身份</string>
+    <string name="forgot_pin_warning">私钥可完全访问钱包。请仅在你自己的设备上输入，切勿向任何人展示。</string>
+    <string name="forgot_pin_action">重置 PIN</string>
+
+    <string name="reputation_level_newbie">新手</string>
+    <string name="reputation_level_reliable">可靠</string>
+    <string name="reputation_level_expert">专家</string>
+
+    <string name="error_wallet_unavailable">钱包不可用</string>
+    <string name="error_invalid_recipient">收款地址无效</string>
+    <string name="error_self_transfer">不能向自己转账</string>
+    <string name="error_invalid_amount">金额无效</string>
+    <string name="error_amount_positive">金额必须大于零</string>
+    <string name="error_insufficient_funds_fee">余额不足（含手续费）</string>
+    <string name="error_signing_key_unavailable">无法获取签名密钥</string>
+    <string name="error_recipient_not_found">网络中未找到收款人。请连接节点后重试。</string>
+    <string name="error_sign_transfer">无法签名转账</string>
+    <string name="transfer_sent_format">转账已发送：%1$s TRG</string>
+
+    <string name="chart_start">开始</string>
+    <string name="chart_now">现在</string>
+
+    <string name="onboarding_welcome">欢迎来到去中心化网络</string>
+    <string name="onboarding_feature_phone">你的手机是网络的一部分</string>
+    <string name="onboarding_feature_mine">保持手机开机即可挖矿</string>
+    <string name="onboarding_feature_no_servers">无需服务器或中间人</string>
+
+    <string name="wallet_qr_title">钱包二维码</string>
+    <string name="wallet_qr_hint">向发送方展示此代码以接收 TRG</string>
+    <string name="wallet_qr_content_desc">钱包地址二维码</string>
+    <string name="wallet_copy_address">复制地址</string>
+
+    <string name="qr_scanner_hint">将相机对准二维码</string>
+    <string name="qr_scanner_subhint">将代码保持在取景框内——它将自动识别</string>
+
+    <string name="about_description">去中心化区块链网络节点：无需服务器的挖矿和直接通信。</string>
+
+    <string name="tx_details_title">交易详情</string>
+    <string name="tx_details_subtitle">Trigger 钱包中的交易</string>
+    <string name="tx_type">类型</string>
+    <string name="tx_date">日期</string>
+    <string name="tx_status">状态</string>
+    <string name="tx_hash">哈希</string>
+    <string name="tx_copy_hash">复制哈希</string>
+    <string name="nodes_peer_connected">已连接</string>
+    <string name="nodes_peer_found">已找到</string>
+    <string name="error_qr_generate">无法创建二维码</string>
+    <string name="error_camera_permission">扫描需要相机权限</string>
+
+    <string name="label_id_format">ID：%1$s</string>
+    <string name="profile_endpoint_id_format">Endpoint ID：%1$s</string>
+    <string name="amount_zero_aura">0 TRG</string>
+    <string name="amount_plus_zero_aura">+0 TRG</string>
+    <string name="amount_format">%1$s TRG</string>
+    <string name="amount_signed_format">%1$s%2$s TRG</string>
+    <string name="placeholder_dash">—</string>
+    <string name="mining_protocol_poa">PoA</string>
+    <string name="number_zero">0</string>
+    <string name="hint_address_placeholder">0x...</string>
+    <string name="hint_amount_placeholder">0.00</string>
+    <string name="token_aura">TRG</string>
+    <string name="brand_upper">TRIGGER</string>
+    <string name="pin_key_0">0</string>
+    <string name="pin_key_1">1</string>
+    <string name="pin_key_2">2</string>
+    <string name="pin_key_3">3</string>
+    <string name="pin_key_4">4</string>
+    <string name="pin_key_5">5</string>
+    <string name="pin_key_6">6</string>
+    <string name="pin_key_7">7</string>
+    <string name="pin_key_8">8</string>
+    <string name="pin_key_9">9</string>
+    <string name="pin_key_delete">⌫</string>
+    <string name="hint_private_key_placeholder">0x...</string>
+    <string name="network_wifi">Wi-Fi</string>
+    <string name="network_cellular">4G</string>
+    <string name="network_ethernet">以太网</string>
+    <string name="network_vpn">VPN</string>
+    <string name="app_version_name_format">%1$s v%2$s</string>
+    <string name="peer_unknown">未知节点</string>
+
+    <string-array name="peer_adjectives">
+        <item>勇敢</item>
+        <item>迅捷</item>
+        <item>机灵</item>
+        <item>聪明</item>
+        <item>强壮</item>
+        <item>冷静</item>
+        <item>开朗</item>
+        <item>安静</item>
+        <item>大胆</item>
+        <item>睿智</item>
+        <item>无畏</item>
+        <item>忠诚</item>
+        <item>坚定</item>
+        <item>明亮</item>
+        <item>敏锐</item>
+        <item>自由</item>
+        <item>凶猛</item>
+        <item>狡黠</item>
+        <item>轻盈</item>
+        <item>钢铁</item>
+        <item>可靠</item>
+        <item>英勇</item>
+        <item>果断</item>
+        <item>敏捷</item>
+    </string-array>
+
+    <string-array name="peer_nouns">
+        <item>猫</item>
+        <item>狐狸</item>
+        <item>狼</item>
+        <item>熊</item>
+        <item>鹰</item>
+        <item>猎鹰</item>
+        <item>老虎</item>
+        <item>狮子</item>
+        <item>豹</item>
+        <item>刺猬</item>
+        <item>野兔</item>
+        <item>海狸</item>
+        <item>海豚</item>
+        <item>鲸鱼</item>
+        <item>龙</item>
+        <item>凤凰</item>
+        <item>苍鹰</item>
+        <item>渡鸦</item>
+        <item>麋鹿</item>
+        <item>鹿</item>
+        <item>企鹅</item>
+        <item>猎豹</item>
+        <item>猞猁</item>
+        <item>郊狼</item>
+    </string-array>
+</resources>

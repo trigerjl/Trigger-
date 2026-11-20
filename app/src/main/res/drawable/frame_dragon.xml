@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Фон аватара «Дракон»: градиентный диск, рога и вращающееся кольцо чешуи. -->
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:width="48dp"
+            android:height="48dp"
+            android:viewportWidth="48"
+            android:viewportHeight="48">
+            <!-- зелёное свечение -->
+            <path
+                android:name="glow"
+                android:pathData="M24,24 m-18,0 a18,18 0 1,1 36,0 a18,18 0 1,1 -36,0"
+                android:strokeColor="#7343A047"
+                android:strokeWidth="9"
+                android:fillColor="#00000000" />
+            <!-- диск с зелёным градиентом -->
+            <path
+                android:name="disc"
+                android:pathData="M24,24 m-17.4,0 a17.4,17.4 0 1,1 34.8,0 a17.4,17.4 0 1,1 -34.8,0">
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:type="linear"
+                        android:angle="90"
+                        android:startColor="#66BB6A"
+                        android:endColor="#1B5E20" />
+                </aapt:attr>
+            </path>
+            <!-- светящиеся рога позади иконки -->
+            <path
+                android:name="horn_left_glow"
+                android:pathData="M3.5,14.5 L5,0 L19,7.5 Z"
+                android:fillColor="#80A5D6A7" />
+            <path
+                android:name="horn_right_glow"
+                android:pathData="M44.5,14.5 L43,0 L29,7.5 Z"
+                android:fillColor="#80A5D6A7" />
+            <!-- кольцо чешуи, медленно вращается -->
+            <group android:name="scale_ring" android:pivotX="24" android:pivotY="24">
+                <group android:name="scalesA">
+                    <group android:rotation="0" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#A5D6A7" />
+                    </group>
+                    <group android:rotation="72" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#A5D6A7" />
+                    </group>
+                    <group android:rotation="144" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#A5D6A7" />
+                    </group>
+                    <group android:rotation="216" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#A5D6A7" />
+                    </group>
+                    <group android:rotation="288" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#A5D6A7" />
+                    </group>
+                </group>
+                <group android:name="scalesB">
+                    <group android:rotation="36" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#81C784" />
+                    </group>
+                    <group android:rotation="108" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#81C784" />
+                    </group>
+                    <group android:rotation="180" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#81C784" />
+                    </group>
+                    <group android:rotation="252" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#81C784" />
+                    </group>
+                    <group android:rotation="324" android:pivotX="24" android:pivotY="24">
+                        <path android:pathData="M24,4.8 L26.5,8.3 L24,11.8 L21.5,8.3 Z" android:fillColor="#81C784" />
+                    </group>
+                </group>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="glow">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="strokeAlpha"
+                android:duration="1500"
+                android:valueFrom="0.5"
+                android:valueTo="0.9"
+                android:repeatCount="-1"
+                android:repeatMode="reverse" />
+        </aapt:attr>
+    </target>
+    <target android:name="scale_ring">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="rotation"
+                android:duration="30000"
+                android:valueFrom="0"
+                android:valueTo="360"
+                android:repeatCount="-1"
+                android:repeatMode="restart"
+                android:interpolator="@android:interpolator/linear" />
+        </aapt:attr>
+    </target>
+    <target android:name="scalesA">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="alpha"
+                android:duration="800"
+                android:valueFrom="0.6"
+                android:valueTo="1"
+                android:repeatCount="-1"
+                android:repeatMode="reverse" />
+        </aapt:attr>
+    </target>
+    <target android:name="scalesB">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="alpha"
+                android:duration="800"
+                android:startOffset="400"
+                android:valueFrom="0.6"
+                android:valueTo="1"
+                android:repeatCount="-1"
+                android:repeatMode="reverse" />
+        </aapt:attr>
+    </target>
+</animated-vector>

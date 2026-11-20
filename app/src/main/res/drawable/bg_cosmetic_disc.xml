@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Нейтральный диск-подложка для превью косметики в магазине. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:inset="12.5%">
+    <shape android:shape="oval">
+        <solid android:color="#3A3A47" />
+    </shape>
+</inset>

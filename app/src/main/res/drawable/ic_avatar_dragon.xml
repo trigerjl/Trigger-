@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Иконка аватара «Дракон»: белая голова дракона с рогами. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:pathData="M5,6.5 L3,1 L8.8,3.8 Z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M19,6.5 L21,1 L15.2,3.8 Z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M12,4.5 C16.5,4.5 19.5,7.5 19.5,11.5 C19.5,16.5 16,20.5 12,20.5 C8,20.5 4.5,16.5 4.5,11.5 C4.5,7.5 7.5,4.5 12,4.5 Z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M9.3,10.5 m-1.2,0 a1.2,1.2 0 1,1 2.4,0 a1.2,1.2 0 1,1 -2.4,0"
+        android:fillColor="#4E342E" />
+    <path
+        android:pathData="M14.7,10.5 m-1.2,0 a1.2,1.2 0 1,1 2.4,0 a1.2,1.2 0 1,1 -2.4,0"
+        android:fillColor="#4E342E" />
+    <path
+        android:pathData="M11,15 m-0.7,0 a0.7,0.7 0 1,1 1.4,0 a0.7,0.7 0 1,1 -1.4,0"
+        android:fillColor="#4E342E" />
+    <path
+        android:pathData="M13,15 m-0.7,0 a0.7,0.7 0 1,1 1.4,0 a0.7,0.7 0 1,1 -1.4,0"
+        android:fillColor="#4E342E" />
+</vector>

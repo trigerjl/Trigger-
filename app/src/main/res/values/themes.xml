@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============ LIGHT THEME ============ -->
+    <style name="Theme.Triger.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/accent_purple</item>
+        <item name="colorPrimaryVariant">@color/purple_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent_blue</item>
+        <item name="colorSecondaryVariant">@color/blue_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorAccent">@color/accent_purple</item>
+        <item name="colorError">@color/danger_red</item>
+        <item name="colorOnError">@color/white</item>
+
+        <item name="android:colorBackground">@color/bg_light</item>
+        <item name="colorSurface">@color/card_light</item>
+        <item name="colorOnSurface">@color/text_primary_light</item>
+
+        <item name="android:textColorPrimary">@color/text_primary_light</item>
+        <item name="android:textColorSecondary">@color/text_secondary_light</item>
+
+        <item name="android:windowBackground">@color/bg_light</item>
+        <item name="android:statusBarColor">@color/bg_light</item>
+        <item name="android:navigationBarColor">@color/card_light</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="walletItemBg">@color/surface_variant_light</item>
+        <item name="walletItemStroke">@color/stroke_light</item>
+
+        <item name="bottomNavigationStyle">@style/Triger.BottomNav.Light</item>
+    </style>
+
+    <!-- ============ DARK THEME ============ -->
+    <style name="Theme.Triger.Dark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/accent_purple</item>
+        <item name="colorPrimaryVariant">@color/purple_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent_blue</item>
+        <item name="colorSecondaryVariant">@color/blue_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorAccent">@color/accent_blue</item>
+        <item name="colorError">@color/danger_red</item>
+        <item name="colorOnError">@color/white</item>
+
+        <item name="android:colorBackground">@color/bg_dark</item>
+        <item name="colorSurface">@color/card_dark</item>
+        <item name="colorOnSurface">@color/text_primary_dark</item>
+
+        <item name="android:textColorPrimary">@color/text_primary_dark</item>
+        <item name="android:textColorSecondary">@color/text_secondary_dark</item>
+
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="android:navigationBarColor">@color/card_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="walletItemBg">@color/surface_variant_dark</item>
+        <item name="walletItemStroke">@color/stroke_dark</item>
+
+        <item name="bottomNavigationStyle">@style/Triger.BottomNav.Dark</item>
+    </style>
+
+    <!-- ============ QR SCANNER DIALOG ============ -->
+    <style name="Theme.Triger.Scanner" parent="Theme.Triger.Dark">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- ============ BOTTOM SHEETS ============ -->
+    <style name="Theme.Triger.BottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.Triger.BottomSheet</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.Triger.BottomSheet" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:background">@color/card_dark</item>
+        <item name="backgroundTint">@color/card_dark</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Triger.BottomSheet</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Triger.BottomSheet</item>
+    </style>
+
+    <style name="ShapeAppearance.Triger.BottomSheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- ============ MATERIAL 3 STYLE SHAPES ============ -->
+    <style name="ShapeAppearance.Triger.Card" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Triger.Button" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Triger.Hero" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <style name="TextAppearance.Triger.Tab" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Triger.BottomSheetDialog" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Triger.BottomSheetStyle</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Triger.BottomSheetStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="shapeAppearance">@null</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <!-- ============ BOTTOM NAVIGATION ============ -->
+    <style name="Triger.BottomNav.Light" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="itemIconTint">@color/bottom_nav_item_light</item>
+        <item name="itemTextColor">@color/bottom_nav_item_light</item>
+        <item name="itemBackground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@color/card_light</item>
+    </style>
+
+    <style name="Triger.BottomNav.Dark" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="itemIconTint">@color/bottom_nav_item_dark</item>
+        <item name="itemTextColor">@color/bottom_nav_item_dark</item>
+        <item name="itemBackground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@color/card_dark</item>
+    </style>
+
+</resources>

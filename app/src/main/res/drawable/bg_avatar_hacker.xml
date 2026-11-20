@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Фон аватара «Тайный майнер»: тёмное углубление с зелёным свечением. -->
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:width="48dp"
+            android:height="48dp"
+            android:viewportWidth="48"
+            android:viewportHeight="48">
+            <path
+                android:name="glow_outer"
+                android:pathData="M24,24 m-17.5,0 a17.5,17.5 0 1,1 35,0 a17.5,17.5 0 1,1 -35,0"
+                android:strokeColor="#4D00E676"
+                android:strokeWidth="13"
+                android:fillColor="#00000000" />
+            <path
+                android:name="glow_mid"
+                android:pathData="M24,24 m-17.5,0 a17.5,17.5 0 1,1 35,0 a17.5,17.5 0 1,1 -35,0"
+                android:strokeColor="#8000E676"
+                android:strokeWidth="7.5"
+                android:fillColor="#00000000" />
+            <!-- тёмный диск-углубление -->
+            <path
+                android:name="disc"
+                android:pathData="M24,24 m-17.5,0 a17.5,17.5 0 1,1 35,0 a17.5,17.5 0 1,1 -35,0">
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:type="radial"
+                        android:centerX="24"
+                        android:centerY="24"
+                        android:gradientRadius="17.5"
+                        android:startColor="#3F3F4E"
+                        android:endColor="#0C0C15" />
+                </aapt:attr>
+            </path>
+            <!-- внутренняя тень -->
+            <path
+                android:name="inner_shadow"
+                android:pathData="M24,24 m-16.4,0 a16.4,16.4 0 1,1 32.8,0 a16.4,16.4 0 1,1 -32.8,0"
+                android:strokeColor="#66000000"
+                android:strokeWidth="2.4"
+                android:fillColor="#00000000" />
+            <!-- акцентный обод -->
+            <path
+                android:name="rim"
+                android:pathData="M24,24 m-17.5,0 a17.5,17.5 0 1,1 35,0 a17.5,17.5 0 1,1 -35,0"
+                android:strokeColor="#CC00E676"
+                android:strokeWidth="1.2"
+                android:fillColor="#00000000" />
+            <!-- блик -->
+            <path
+                android:name="shine"
+                android:pathData="M9.5,24 A14.5,14.5 0 0,1 16.75,11.44"
+                android:strokeColor="#40FFFFFF"
+                android:strokeWidth="1.2"
+                android:strokeLineCap="round"
+                android:fillColor="#00000000" />
+        </vector>
+    </aapt:attr>
+    <target android:name="glow_outer">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="strokeAlpha"
+                android:duration="1800"
+                android:valueFrom="0.25"
+                android:valueTo="0.55"
+                android:repeatCount="-1"
+                android:repeatMode="reverse" />
+        </aapt:attr>
+    </target>
+    <target android:name="glow_mid">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="strokeAlpha"
+                android:duration="1800"
+                android:startOffset="900"
+                android:valueFrom="0.35"
+                android:valueTo="0.8"
+                android:repeatCount="-1"
+                android:repeatMode="reverse" />
+        </aapt:attr>
+    </target>
+</animated-vector>
