@@ -3160,6 +3160,22 @@ public class IrohNode {
         }
     }
 
+    public void disconnectPeer(String peerEndpointId) {
+        if (peerEndpointId == null || peerEndpointId.isEmpty()) {
+            return;
+        }
+        Connection conn = connections.remove(peerEndpointId);
+        if (conn == null) {
+            return;
+        }
+        try {
+            conn.close();
+            Log.i(TAG, "Iroh: disconnected from " + peerEndpointId);
+        } catch (Throwable t) {
+            Log.w(TAG, "Iroh: disconnect err for " + peerEndpointId + ": " + t);
+        }
+    }
+
     /** Останавливает Endpoint и освобождает ресурсы. Узел можно запустить снова. */
     public synchronized void stop() {
         started.set(false);

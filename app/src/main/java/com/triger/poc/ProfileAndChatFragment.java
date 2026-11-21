@@ -219,9 +219,9 @@ public class ProfileAndChatFragment extends Fragment {
         onlineRecycler.setLayoutManager(new LinearLayoutManager(requireContext()));
         tvOnlineEmpty = pageOnline.findViewById(R.id.tv_online_empty);
         chatDatabase = ChatDatabase.getInstance(requireContext());
-        peersAdapter = new PeerAdapter();
+        peersAdapter = new PeerAdapter(true);
         peersRecycler.setAdapter(peersAdapter);
-        onlineAdapter = new PeerAdapter();
+        onlineAdapter = new PeerAdapter(false);
         onlineRecycler.setAdapter(onlineAdapter);
 
         pagerChats.setAdapter(new ProfilePagerAdapter(pageMyChats, pageOnline));
@@ -603,6 +603,71 @@ public class ProfileAndChatFragment extends Fragment {
         updateAvatar(name, id);
     }
 
+    private void confirmDeleteChat(String peer) {
+        if (!isAdded() || getContext() == null || TextUtils.isEmpty(peer)) {
+            return;
+        }
+        final String target = peer;
+        String name = irohNode.getPeerDisplayName(target);
+        if (TextUtils.isEmpty(name)) {
+            name = PeerNameGenerator.shortId(target);
+        }
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.chat_delete_title)
+                .setMessage(getString(R.string.chat_delete_message))
+                .setNegativeButton(R.string.action_cancel, null)
+                .setPositiveButton(R.string.action_delete, (dialog, which) -> deleteChat(target))
+                .show();
+    }
+
+    private void deleteChat(String peerId) {
+        if (!isAdded() || getContext() == null || TextUtils.isEmpty(peerId)) {
+            return;
+        }
+        final String target = peerId;
+        final Context appContext = requireContext().getApplicationContext();
+        new Thread(() -> {
+            boolean ok = false;
+            try {
+                if (chatDatabase != null) {
+                    chatDatabase.deleteChat(target);
+                }
+                try {
+                    UnreadCounter.getInstance(appContext).clear(target);
+                } catch (Throwable ignored) {
+                }
+                try {
+                    NotificationHelper.cancelMessageNotification(appContext, target);
+                } catch (Throwable ignored) {
+                }
+                try {
+                    irohNode.disconnectPeer(target);
+                } catch (Throwable ignored) {
+                }
+                ok = true;
+            } catch (Throwable t) {
+                Log.w("ProfileAndChat", "delete chat failed: " + target, t);
+            }
+            final boolean deleted = ok;
+            if (!isAdded()) {
+                return;
+            }
+            requireActivity().runOnUiThread(() -> {
+                if (!isAdded()) {
+                    return;
+                }
+                if (deleted) {
+                    renderPeerList();
+                    Toast.makeText(requireContext(), R.string.chat_deleted, Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                    Toast.makeText(requireContext(), R.string.chat_delete_error,
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        }, "delete-chat").start();
+    }
+
     private void renderPeerList() {
         if (peersAdapter == null || onlineAdapter == null || getContext() == null) {
             return;
@@ -735,6 +800,11 @@ public class ProfileAndChatFragment extends Fragment {
                 new SimpleDateFormat("HH:mm", Locale.getDefault());
         private final List<String> items = new ArrayList<>();
         private final List<String> connectedPeers = new ArrayList<>();
+        private final boolean allowDelete;
+
+        PeerAdapter(boolean allowDelete) {
+            this.allowDelete = allowDelete;
+        }
 
         void submit(List<String> peers, List<String> connected) {
             if (items.equals(peers) && connectedPeers.equals(connected)) {
@@ -810,6 +880,15 @@ public class ProfileAndChatFragment extends Fragment {
             holder.tvAvatar.setBackground(avatarBackground);
             CosmeticManager.applyFrame(holder.ivPeerFrame, irohNode.getPeerFrame(peer));
             holder.itemView.setOnClickListener(v -> openChatWith(peer));
+            if (allowDelete) {
+                holder.itemView.setOnLongClickListener(v -> {
+                    confirmDeleteChat(peer);
+                    return true;
+                });
+            } else {
+                holder.itemView.setOnLongClickListener(null);
+                holder.itemView.setLongClickable(false);
+            }
         }
 
         @Override

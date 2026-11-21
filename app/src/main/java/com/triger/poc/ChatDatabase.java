@@ -427,6 +427,40 @@ public final class ChatDatabase extends SQLiteOpenHelper {
         return result;
     }
 
+    public int deleteChat(String peerId) {
+        if (peerId == null || peerId.isEmpty()) {
+            return 0;
+        }
+        List<String> audioPaths = new ArrayList<>();
+        SQLiteDatabase db = getWritableDatabase();
+        try (Cursor cursor = db.query(TABLE_MESSAGES,
+                new String[]{COL_AUDIO_PATH},
+                COL_PEER_ID + " = ? AND " + COL_MESSAGE_TYPE + " = ? AND " + COL_AUDIO_PATH + " != ''",
+                new String[]{peerId, TYPE_AUDIO}, null, null, null)) {
+            int audioIndex = cursor.getColumnIndexOrThrow(COL_AUDIO_PATH);
+            while (cursor.moveToNext()) {
+                String path = cursor.getString(audioIndex);
+                if (path != null && !path.isEmpty()) {
+                    audioPaths.add(path);
+                }
+            }
+        } catch (Throwable ignored) {
+        }
+        int deleted = db.delete(TABLE_MESSAGES, COL_PEER_ID + " = ?",
+                new String[]{peerId});
+        for (String path : audioPaths) {
+            try {
+                java.io.File file = new java.io.File(path);
+                if (file.exists()) {
+                    //noinspection ResultOfMethodCallIgnored
+                    file.delete();
+                }
+            } catch (Throwable ignored) {
+            }
+        }
+        return deleted;
+    }
+
     public void saveNews(NewsItem item) {
         if (item == null || item.getId().isEmpty() || item.getText().isEmpty()) {
             return;

@@ -689,6 +689,10 @@
     <string name="chat_export_error">Failed to export chat</string>
     <string name="chat_export_subject_format">Chat with %1$s</string>
     <string name="chat_export_header_format">Chat with %1$s\nExported: %2$s\n\n</string>
+    <string name="chat_delete_title">Delete chat?</string>
+    <string name="chat_delete_message">All messages in this chat will be deleted from this device.</string>
+    <string name="chat_deleted">Chat deleted</string>
+    <string name="chat_delete_error">Failed to delete chat</string>
 
     <string name="profile_title">Profile</string>
     <string name="profile_avatar">Avatar</string>

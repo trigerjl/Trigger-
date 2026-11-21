@@ -688,6 +688,10 @@
     <string name="chat_export_error">Не удалось экспортировать чат</string>
     <string name="chat_export_subject_format">Переписка с %1$s</string>
     <string name="chat_export_header_format">Переписка с %1$s\nЭкспорт: %2$s\n\n</string>
+    <string name="chat_delete_title">Удалить чат?</string>
+    <string name="chat_delete_message">Все сообщения этого чата будут удалены с этого устройства.</string>
+    <string name="chat_deleted">Чат удалён</string>
+    <string name="chat_delete_error">Не удалось удалить чат</string>
 
     <string name="profile_title">Профиль</string>
     <string name="profile_avatar">Аватар</string>
