@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ============ LIGHT THEME ============ -->
+    <style name="Theme.Triger.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/accent_purple</item>
+        <item name="colorPrimaryVariant">@color/purple_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent_blue</item>
+        <item name="colorSecondaryVariant">@color/blue_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorAccent">@color/accent_purple</item>
+
+        <item name="android:colorBackground">@color/bg_light</item>
+        <item name="colorSurface">@color/card_light</item>
+        <item name="colorOnSurface">@color/text_primary_light</item>
+
+        <item name="android:textColorPrimary">@color/text_primary_light</item>
+        <item name="android:textColorSecondary">@color/text_secondary_light</item>
+
+        <item name="android:windowBackground">@color/bg_light</item>
+        <item name="android:statusBarColor">@color/bg_light</item>
+        <item name="android:navigationBarColor">@color/card_light</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="bottomNavigationStyle">@style/Triger.BottomNav.Light</item>
+    </style>
+
+    <!-- ============ DARK THEME ============ -->
+    <style name="Theme.Triger.Dark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/accent_purple</item>
+        <item name="colorPrimaryVariant">@color/purple_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent_blue</item>
+        <item name="colorSecondaryVariant">@color/blue_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorAccent">@color/accent_blue</item>
+
+        <item name="android:colorBackground">@color/bg_dark</item>
+        <item name="colorSurface">@color/card_dark</item>
+        <item name="colorOnSurface">@color/text_primary_dark</item>
+
+        <item name="android:textColorPrimary">@color/text_primary_dark</item>
+        <item name="android:textColorSecondary">@color/text_secondary_dark</item>
+
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="android:navigationBarColor">@color/card_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="bottomNavigationStyle">@style/Triger.BottomNav.Dark</item>
+    </style>
+
+    <!-- ============ BOTTOM NAVIGATION ============ -->
+    <style name="Triger.BottomNav.Light" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="itemIconTint">@color/bottom_nav_item_light</item>
+        <item name="itemTextColor">@color/bottom_nav_item_light</item>
+        <item name="itemBackground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@color/card_light</item>
+    </style>
+
+    <style name="Triger.BottomNav.Dark" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="itemIconTint">@color/bottom_nav_item_dark</item>
+        <item name="itemTextColor">@color/bottom_nav_item_dark</item>
+        <item name="itemBackground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">@color/card_dark</item>
+    </style>
+
+</resources>

@@ -1,5 +1,11 @@
 # Trigger — P2P блокчейн-кошелёк на Android
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/trigerjl/Trigger-?style=flat-square)
+![GitHub Repo stars](https://img.shields.io/github/stars/trigerjl/Trigger-?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/trigerjl/Trigger-?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/trigerjl/Trigger-?style=flat-square)
+![Android](https://img.shields.io/badge/Platform-Android-green?style=flat-square)
+
 Trigger — мобильный блокчейн-узел на Android, который работает напрямую между устройствами: без серверов, без централизованного хранения данных и без посредников. Сеть строится на Iroh (Relay + mDNS), консенсус — PoA с аппаратной защитой ключей через StrongBox.
 
 ## Дисклеймер
@@ -9,6 +15,8 @@ Trigger — мобильный блокчейн-узел на Android, кото�
 > **Trigger не является обменником. Пользователи сами договариваются о переводе рублей через банк (P2P).**
 
 TRG не даёт прав на дивиденды, проценты или долю в проекте. Стоимость токена не гарантируется, а любые сценарии использования в маркетплейсе и обменнике не являются инвестиционным предложением.
+
+Приложение находится в стадии активной разработки (MVP). Используйте на свой страх и риск.
 
 ## Возможности
 
@@ -27,13 +35,17 @@ TRG не даёт прав на дивиденды, проценты или до
 
 ## Установка
 
-APK доступен в разделе [Releases](../../releases).
+APK доступен в разделе [Releases](../../releases). Установите на устройство с Android 8.0+ (API 26+) и сохраните сид-фразу при первом запуске.
 
 ## Сборка
+
+Требования: Android SDK, JDK 17.
 
 ```bash
 ./gradlew assembleDebug
 ```
+
+APK будет находиться в `app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Стратегия (как у Биткоина)
 
@@ -72,6 +84,10 @@ Trigger использует экономическую модель с пред
 - Независимый аудит.
 - Bug Bounty.
 - Юридическая обёртка.
+
+## Как помочь проекту
+
+Мы приветствуем любые улучшения: код, дизайн, документацию, идеи. Пожалуйста, прочитайте [CONTRIBUTING.md](CONTRIBUTING.md) перед тем, как создать Pull Request.
 
 ## Лицензия
 
