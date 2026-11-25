@@ -333,8 +333,6 @@ public class IrohNode {
     private volatile Thread discoveryThread;
     private final AtomicBoolean discoveryRunning = new AtomicBoolean(false);
     private final AtomicBoolean n0OnlineRequested = new AtomicBoolean(false);
-    /** Разрешён ли автоматический Relay/Pkarr fallback по сетевому сценарию. */
-    private final AtomicBoolean n0FallbackAllowed = new AtomicBoolean(false);
     /** Успешно ли применён n0-пресет (relays + Pkarr/DNS discovery + crypto). */
     private volatile boolean n0PresetApplied = false;
     /** Получен ли home relay через endpoint.online() (нужен для диагностики relay). */
@@ -357,6 +355,12 @@ public class IrohNode {
     private volatile MdnsDiscovery mdnsDiscovery;
     private volatile List<String> selfDirectAddresses = Collections.emptyList();
     private final AtomicLong lastNetworkChangeMs = new AtomicLong(0L);
+    private final AtomicBoolean processingNetworkChange = new AtomicBoolean(false);
+    private volatile String lastNotifiedNetworkType = "";
+    private volatile ScheduledFuture<?> n0OnlineTask;
+    private volatile ScheduledFuture<?> idleReconnectTask;
+    private static final long IDLE_RECONNECT_INTERVAL_MS = 2L * 60L * 1000L;
+    private static final long N0_ONLINE_INTERVAL_MS = 5L * 60L * 1000L;
     private final AtomicLong lastValidatorResyncMs = new AtomicLong(0L);
     private static final long NETWORK_CHANGE_DEBOUNCE_MS = 500L;
     private volatile String deviceId = "";
@@ -508,6 +512,7 @@ public class IrohNode {
         final Context appCtx = ctx != null ? ctx.getApplicationContext() : null;
         if (appCtx != null) {
             appContext = appCtx;
+            lastNotifiedNetworkType = NetworkType.current(appCtx);
             MarketMakerAPI.initialize(appCtx);
             NetworkFileLogger.init(appCtx);
             registerDozeReceiver(appCtx);
@@ -567,14 +572,9 @@ public class IrohNode {
                 failStart("building endpoint", t);
                 return;
             }
-            try {
-                builder.applyN0();
-                n0PresetApplied = true;
-                Log.i(TAG, "Iroh: n0 preset applied (relays + Pkarr/DNS discovery + crypto)");
-            } catch (Throwable t) {
-                // applyN0 необязателен: без него узел поднимется, но без relay/DNS.
-                Log.w(TAG, "Pkarr: n0 preset failed, record not published", t);
-                Log.w(TAG, "Iroh: applyN0 failed (continuing without n0): " + t, t);
+            n0PresetApplied = enableDhtDiscovery(builder);
+            if (!n0PresetApplied) {
+                Log.w(TAG, "Iroh: DHT discovery unavailable, continuing with mDNS/PEX only");
             }
             // Публичный Relay n0.computer: Iroh регистрируется на нём по HTTPS
             // при bind через RelayMode.Custom.
@@ -609,15 +609,8 @@ public class IrohNode {
                 failStart("registering ALPN", t);
                 return;
             }
-            // n0 discovery (Pkarr/DNS + relays) включается только через applyN0():
-            // отдельного builder.discovery(...) в этих биндингах нет.
-            if (n0PresetApplied) {
-                Log.i(TAG, "Iroh: discovery enabled via n0 preset (Pkarr/DNS)");
-            } else if (tryEnableDiscoveryByReflection(builder)) {
-                Log.i(TAG, "Iroh: discovery enabled via reflection");
-            } else {
-                Log.w(TAG, "Iroh: discovery is NOT enabled (n0 preset failed, no discovery API)");
-            }
+            Log.i(TAG, "Iroh: endpoint discovery = "
+                    + (n0PresetApplied ? "DHT (n0 Pkarr/DNS) + relays + mDNS" : "mDNS + PEX only"));
             try {
                 Object res = BuildersKt.runBlocking(Dispatchers.getIO(), (scope, cont) -> {
                     try {
@@ -675,6 +668,8 @@ public class IrohNode {
             refreshSelfDirectAddresses(endpoint);
             startAcceptLoop(endpoint);
             startEndpointWatchers(endpoint);
+            scheduleN0OnlineTimer(endpoint);
+            scheduleIdleReconnectTimer();
             registerAndroidNetworkCallback(appCtx);
             starting.set(false);
             Log.i(TAG, "Iroh: host started, endpointId = " + endpointId);
@@ -722,21 +717,15 @@ public class IrohNode {
                     return;
                 }
                 timing("Wi-Fi: relay fallback start");
-                n0FallbackAllowed.set(true);
                 connectConfiguredRelay(ep);
-                requestN0Online(ep);
             });
             return;
         }
         if (NetworkType.CELLULAR.equals(type)) {
             // В LTE локального P2P нет: Relay нужен сразу как единственный путь.
             timing("LTE: relay start");
-            n0FallbackAllowed.set(true);
             Log.i(TAG, "Network: LTE -> P2P subnet scan skipped, relay start");
-            ioExec.submit(() -> {
-                connectConfiguredRelay(ep);
-                requestN0Online(ep);
-            });
+            ioExec.submit(() -> connectConfiguredRelay(ep));
             return;
         }
         // Ethernet/VPN/unknown: локальный скан не запускаем, Relay — fallback.
@@ -744,9 +733,7 @@ public class IrohNode {
         ioExec.submit(() -> {
             sleepQuietly(15000L);
             timing("network fallback: relay start");
-            n0FallbackAllowed.set(true);
             connectConfiguredRelay(ep);
-            requestN0Online(ep);
         });
     }
 
@@ -880,7 +867,6 @@ public class IrohNode {
                 @Override
                 public Object onChange(Continuation<? super Unit> continuation) {
                     try {
-                        Log.i(TAG, "Iroh: native network change event");
                         notifyNetworkChange();
                     } catch (Throwable t) {
                         Log.w(TAG, "Iroh: native network change handling failed: " + t);
@@ -1160,7 +1146,6 @@ public class IrohNode {
                         Log.i(TAG, "Stability: disconnected from " + remote);
                     } catch (Exception ignored) {
                     }
-                    scheduleReconnect(remote);
                 }
                 return;
             }
@@ -1435,11 +1420,7 @@ public class IrohNode {
                         Thread.sleep(1000L);
                         continue;
                     }
-                    if (n0FallbackAllowed.get() && !n0Online) {
-                        requestN0Online(ep);
-                    }
                     syncKnownFromConnections();
-                    connectKnownPeers();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     break;
@@ -1459,6 +1440,51 @@ public class IrohNode {
         t.setDaemon(true);
         discoveryThread = t;
         t.start();
+    }
+
+    private void scheduleN0OnlineTimer(Endpoint ep) {
+        ScheduledFuture<?> old = n0OnlineTask;
+        if (old != null) {
+            old.cancel(false);
+        }
+        n0OnlineTask = reconnectExec.scheduleAtFixedRate(() -> {
+            if (endpoint == ep && started.get() && n0PresetApplied) {
+                requestN0Online(ep);
+            }
+        }, N0_ONLINE_INTERVAL_MS, N0_ONLINE_INTERVAL_MS, TimeUnit.MILLISECONDS);
+    }
+
+    private void cancelN0OnlineTimer() {
+        ScheduledFuture<?> task = n0OnlineTask;
+        n0OnlineTask = null;
+        if (task != null) {
+            task.cancel(false);
+        }
+    }
+
+    private void scheduleIdleReconnectTimer() {
+        ScheduledFuture<?> old = idleReconnectTask;
+        if (old != null) {
+            old.cancel(false);
+        }
+        idleReconnectTask = reconnectExec.scheduleAtFixedRate(() -> {
+            if (!started.get() || endpoint == null) {
+                return;
+            }
+            if (!getConnectedPeers().isEmpty()
+                    || P2PNode.getInstance().getConnectedPeers() > 0) {
+                return;
+            }
+            ioExec.submit(this::connectKnownPeers);
+        }, IDLE_RECONNECT_INTERVAL_MS, IDLE_RECONNECT_INTERVAL_MS, TimeUnit.MILLISECONDS);
+    }
+
+    private void cancelIdleReconnectTimer() {
+        ScheduledFuture<?> task = idleReconnectTask;
+        idleReconnectTask = null;
+        if (task != null) {
+            task.cancel(false);
+        }
     }
 
     /** Ждёт подключения к relay/DNS в фоне, чтобы n0 discovery был прогрето. */
@@ -3166,6 +3192,8 @@ public class IrohNode {
         starting.set(false);
         discoveryRunning.set(false);
         stopReconnectLoop();
+        cancelN0OnlineTimer();
+        cancelIdleReconnectTimer();
         cancelHeartbeatTask();
         unregisterDozeReceiver();
         stopMdnsDiscovery();
@@ -4045,7 +4073,8 @@ public class IrohNode {
      * В текущих uniffi-биндингах iroh_ffi (и в libiroh_ffi.so) метода
      * {@code Endpoint.network_change()} нет: доступен только
      * {@code watchNetworkChange(callback)} — обратный вызов из Iroh в приложение.
-     * Поэтому обновляем relay/DNS онлайн и переподключаем известных пиров.
+     * Переподключение тут не запускаем: оно доступно только при старте, по кнопке
+     * «Обновить» и по таймеру, когда нет активных соединений.
      */
     public void notifyNetworkChange() {
         notifyNetworkChange(NetworkType.current(appContext));
@@ -4056,33 +4085,34 @@ public class IrohNode {
                 ? NetworkType.NONE : networkType.trim();
         Endpoint ep = endpoint;
         if (ep == null || !started.get()) {
-            Log.w(TAG, "Network change: " + type + " (endpoint not started, ignored)");
             return;
         }
-        Log.i(TAG, "Network change: " + type);
-        if (heartbeatRunning) {
-            applyHeartbeatState();
+        synchronized (this) {
+            if (type.equals(lastNotifiedNetworkType)) {
+                return;
+            }
+            lastNotifiedNetworkType = type;
         }
         long now = System.currentTimeMillis();
         long last = lastNetworkChangeMs.get();
         if (now - last < NETWORK_CHANGE_DEBOUNCE_MS) {
-            Log.d(TAG, "Network change: " + type + " (debounced)");
             return;
         }
         if (!lastNetworkChangeMs.compareAndSet(last, now)) {
-            Log.d(TAG, "Network change: " + type + " (debounced)");
             return;
         }
-
-        Log.i(TAG, "Network change: " + type + " -> refreshing relay/DNS and reconnecting");
-        n0OnlineRequested.set(false);
-        n0Online = false;
-        requestN0Online(ep);
-        refreshSelfDirectAddresses(ep);
-        for (String peer : getKnownPeers()) {
-            scheduleReconnect(peer);
+        if (!processingNetworkChange.compareAndSet(false, true)) {
+            return;
         }
-        ioExec.submit(this::connectKnownPeers);
+        try {
+            Log.i(TAG, "Network change: " + type + " -> updated (no auto-reconnect)");
+            if (heartbeatRunning) {
+                applyHeartbeatState();
+            }
+            refreshSelfDirectAddresses(ep);
+        } finally {
+            processingNetworkChange.set(false);
+        }
     }
 
     public Endpoint getEndpoint() {
@@ -4552,20 +4582,36 @@ public class IrohNode {
         return false;
     }
 
-    private boolean tryEnableDiscoveryByReflection(EndpointBuilder builder) {
+    private boolean enableDhtDiscovery(EndpointBuilder builder) {
         try {
-            java.lang.reflect.Method m = builder.getClass().getMethod("discovery", boolean.class);
-            m.invoke(builder, true);
+            builder.applyN0();
+            Log.i(TAG, "Iroh: DHT discovery initialized via n0 preset (Pkarr/DNS + relays)");
             return true;
-        } catch (Throwable ignored) {
+        } catch (Throwable t) {
+            Log.w(TAG, "Iroh: applyN0 failed: " + t, t);
+        }
+        if (tryEnableDhtByReflection(builder)) {
+            Log.i(TAG, "Iroh: DHT discovery initialized via reflection");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean tryEnableDhtByReflection(EndpointBuilder builder) {
+        String[] names = {"enableDht", "dht", "dhtDiscovery", "mainlineAddressLookup", "discovery"};
+        for (String name : names) {
             try {
-                java.lang.reflect.Method m2 = builder.getClass().getMethod("discovery");
-                m2.invoke(builder);
+                builder.getClass().getMethod(name).invoke(builder);
                 return true;
-            } catch (Throwable t2) {
-                return false;
+            } catch (Throwable ignored) {
+            }
+            try {
+                builder.getClass().getMethod(name, boolean.class).invoke(builder, true);
+                return true;
+            } catch (Throwable ignored) {
             }
         }
+        return false;
     }
 
     /** Пир не разрешается через n0 DNS/Pkarr. */
@@ -4668,7 +4714,6 @@ public class IrohNode {
                 Log.e(TAG, "Stability: connection error = " + (t.getMessage() == null ? t.toString() : t.getMessage()));
             } catch (Exception ignored) {
             }
-            scheduleReconnect(target);
         });
     }
 

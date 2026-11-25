@@ -12,8 +12,7 @@ apply plugin: 'com.android.application'
 
 android {
     namespace "com.triger.poc"
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 35
     defaultConfig {
         applicationId "com.triger.poc"
         minSdkVersion 26

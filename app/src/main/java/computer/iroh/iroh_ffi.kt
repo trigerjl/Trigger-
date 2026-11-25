@@ -833,6 +833,8 @@ external fun uniffi_iroh_ffi_checksum_func_preset_n0(
 ): Int
 external fun uniffi_iroh_ffi_checksum_func_preset_n0_disable_relay(
 ): Int
+external fun uniffi_iroh_ffi_checksum_func_preset_iroh_services(
+): Int
 external fun uniffi_iroh_ffi_checksum_method_accepting_alpn(
 ): Int
 external fun uniffi_iroh_ffi_checksum_method_accepting_connect(
@@ -1571,6 +1573,8 @@ external fun uniffi_iroh_ffi_fn_func_preset_n0(uniffi_out_err: UniffiRustCallSta
 ): Long
 external fun uniffi_iroh_ffi_fn_func_preset_n0_disable_relay(uniffi_out_err: UniffiRustCallStatus, 
 ): Long
+external fun uniffi_iroh_ffi_fn_func_preset_iroh_services(`options`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus, 
+): Long
 external fun ffi_iroh_ffi_rustbuffer_alloc(`size`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
 external fun ffi_iroh_ffi_rustbuffer_from_bytes(`bytes`: ForeignBytes.ByValue,uniffi_out_err: UniffiRustCallStatus, 
@@ -1700,6 +1704,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_iroh_ffi_checksum_func_preset_n0_disable_relay() != 45395) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_func_preset_iroh_services() != 59955) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_iroh_ffi_checksum_method_accepting_alpn() != 1935) {
@@ -1897,7 +1904,7 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_iroh_ffi_checksum_method_endpointbuilder_relay_mode() != 17405) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_iroh_ffi_checksum_method_endpointbuilder_secret_key() != 35604) {
+    if (lib.uniffi_iroh_ffi_checksum_method_endpointbuilder_secret_key() != 1964) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_iroh_ffi_checksum_method_preset_apply() != 64281) {
@@ -2412,43 +2419,22 @@ private fun UniffiCleaner.Companion.create(): UniffiCleaner =
         // So we check if java.lang.ref.Cleaner is there, and use that…
         java.lang.Class.forName("java.lang.ref.Cleaner")
         JavaLangRefCleaner()
-    } catch (e: Exception) {
-        // … otherwise, fallback to the JNA cleaner if available, else JavaLangRefCleaner
-        try {
-            UniffiJnaCleaner()
-        } catch (e2: Exception) {
-            JavaLangRefCleaner()
-        }
+    } catch (e: ClassNotFoundException) {
+        // … otherwise, fallback to the JNA cleaner.
+        UniffiJnaCleaner()
     }
 
 private class JavaLangRefCleaner : UniffiCleaner {
-    val cleaner = try {
-        val cls = java.lang.Class.forName("java.lang.ref.Cleaner")
-        cls.getMethod("create").invoke(null)
-    } catch (e: Throwable) {
-        throw e
-    }
+    val cleaner = java.lang.ref.Cleaner.create()
 
     override fun register(value: Any, cleanUpTask: Runnable): UniffiCleaner.Cleanable =
-        try {
-            val method = cleaner.javaClass.getMethod("register", Any::class.java, Runnable::class.java)
-            val cleanable = method.invoke(cleaner, value, cleanUpTask)
-            JavaLangRefCleanable(cleanable)
-        } catch (e: Throwable) {
-            UniffiJnaCleaner().register(value, cleanUpTask)
-        }
+        JavaLangRefCleanable(cleaner.register(value, cleanUpTask))
 }
 
 private class JavaLangRefCleanable(
-    val cleanable: Any
+    val cleanable: java.lang.ref.Cleaner.Cleanable
 ) : UniffiCleaner.Cleanable {
-    override fun clean() {
-        try {
-            val method = cleanable.javaClass.getMethod("clean")
-            method.invoke(cleanable)
-        } catch (e: Throwable) {
-        }
-    }
+    override fun clean() = cleanable.clean()
 }
 
 /**
@@ -6034,6 +6020,9 @@ public interface EndpointBuilderInterface {
     
     /**
      * Set the endpoint secret key (32 bytes).
+     *
+     * Errors if a preset already pinned the key because it minted a credential
+     * scoped to it — see `preset_iroh_services`.
      */
     fun `secretKey`(`bytes`: kotlin.ByteArray)
     
@@ -6281,6 +6270,9 @@ open class EndpointBuilder: Disposable, AutoCloseable, EndpointBuilderInterface
     
     /**
      * Set the endpoint secret key (32 bytes).
+     *
+     * Errors if a preset already pinned the key because it minted a credential
+     * scoped to it — see `preset_iroh_services`.
      */
     @Throws(IrohException::class)override fun `secretKey`(`bytes`: kotlin.ByteArray)
         = 
@@ -13876,6 +13868,82 @@ public object FfiConverterTypeServicesOptions: FfiConverterRustBuffer<ServicesOp
 
 
 
+/**
+ * Options for [`preset_iroh_services`].
+ *
+ * Supply *exactly one* of `api_secret` or `api_secret_from_env`.
+ */
+data class ServicesPresetOptions (
+    /**
+     * Your project's relay URLs. Defaults to the n0 public relays when
+     * omitted, matching `iroh_services::preset()`. Passing an empty list is an
+     * error rather than a silent fallback — that is nearly always a filtered
+     * list that came back empty.
+     */
+    var `relays`: List<kotlin.String>? = null 
+    , 
+    /**
+     * Encoded API secret string (`services1...`). The relay access token is
+     * minted from this.
+     */
+    var `apiSecret`: kotlin.String? = null 
+    , 
+    /**
+     * If true, read the API secret from `IROH_SERVICES_API_SECRET`.
+     */
+    var `apiSecretFromEnv`: kotlin.Boolean? = null 
+    , 
+    /**
+     * The endpoint's own identity key (32 bytes) — not your API secret. The
+     * access token is scoped to it, so pass the same key you persist for your
+     * endpoint's identity. A fresh key is generated when omitted.
+     *
+     * Set the key *here*, not via `EndpointOptions::secret_key` or
+     * `EndpointBuilder::secret_key`: both are layered on top of the preset and
+     * would replace the one the token is scoped to. Doing that is an error,
+     * not a silent auth failure — this preset pins the key.
+     */
+    var `endpointSecretKey`: kotlin.ByteArray? = null 
+    
+){
+    
+
+    
+
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeServicesPresetOptions: FfiConverterRustBuffer<ServicesPresetOptions> {
+    override fun read(buf: ByteBuffer): ServicesPresetOptions {
+        return ServicesPresetOptions(
+            FfiConverterOptionalSequenceString.read(buf),
+            FfiConverterOptionalString.read(buf),
+            FfiConverterOptionalBoolean.read(buf),
+            FfiConverterOptionalByteArray.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: ServicesPresetOptions) = (
+            FfiConverterOptionalSequenceString.allocationSize(value.`relays`) +
+            FfiConverterOptionalString.allocationSize(value.`apiSecret`) +
+            FfiConverterOptionalBoolean.allocationSize(value.`apiSecretFromEnv`) +
+            FfiConverterOptionalByteArray.allocationSize(value.`endpointSecretKey`)
+    )
+
+    override fun write(value: ServicesPresetOptions, buf: ByteBuffer) {
+            FfiConverterOptionalSequenceString.write(value.`relays`, buf)
+            FfiConverterOptionalString.write(value.`apiSecret`, buf)
+            FfiConverterOptionalBoolean.write(value.`apiSecretFromEnv`, buf)
+            FfiConverterOptionalByteArray.write(value.`endpointSecretKey`, buf)
+    }
+}
+
+
+
 
 
 sealed class CallbackException: kotlin.Exception() {
@@ -14879,6 +14947,38 @@ public object FfiConverterOptionalTypeRelayConfig: FfiConverterRustBuffer<RelayC
 /**
  * @suppress
  */
+public object FfiConverterOptionalSequenceString: FfiConverterRustBuffer<List<kotlin.String>?> {
+    override fun read(buf: ByteBuffer): List<kotlin.String>? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterSequenceString.read(buf)
+    }
+
+    override fun allocationSize(value: List<kotlin.String>?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterSequenceString.allocationSize(value)
+        }
+    }
+
+    override fun write(value: List<kotlin.String>?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterSequenceString.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
 public object FfiConverterOptionalSequenceByteArray: FfiConverterRustBuffer<List<kotlin.ByteArray>?> {
     override fun read(buf: ByteBuffer): List<kotlin.ByteArray>? {
         if (buf.get().toInt() == 0) {
@@ -15152,6 +15252,27 @@ public object FfiConverterMapByteArrayTypeProtocolCreator: FfiConverterRustBuffe
     UniffiLib.uniffi_iroh_ffi_fn_func_preset_n0_disable_relay(
     
         _status)
+}
+    )
+    }
+    
+
+        /**
+         * Build an endpoint preset for your project's dedicated relays.
+         *
+         * Mirrors `iroh_services::preset()`: mints a short-lived access token scoped to
+         * the endpoint's key and to relay use only, then configures the endpoint to use
+         * your relays with that token. Pass the result as `EndpointOptions::preset`.
+         *
+         * The token is minted here, at preset-build time, so build the preset shortly
+         * before binding the endpoint.
+         */
+    @Throws(IrohException::class) fun `presetIrohServices`(`options`: ServicesPresetOptions): Preset {
+            return FfiConverterTypePreset.lift(
+    uniffiRustCallWithError(IrohException) { _status ->
+    UniffiLib.uniffi_iroh_ffi_fn_func_preset_iroh_services(
+    
+        FfiConverterTypeServicesPresetOptions.lower(`options`),_status)
 }
     )
     }
