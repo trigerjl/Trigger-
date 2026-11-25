@@ -1,0 +1,169 @@
+name: build-iroh
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/build-iroh.yml"
+  workflow_dispatch:
+    inputs:
+      iroh_ffi_repo:
+        description: "Fork iroh-ffi with DHT integration (owner/repo)"
+        required: false
+        type: string
+      iroh_ffi_ref:
+        description: "Branch, tag or commit in iroh-ffi"
+        required: false
+        type: string
+      iroh_ffi_features:
+        description: "Cargo features, for example dht or topic-tracker"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-iroh-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-android:
+    name: Build Android iroh-ffi with DHT
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      IROH_FFI_REPOSITORY: trigerjl/iroh-ffi
+      IROH_FFI_REF: ${{ github.event.inputs.iroh_ffi_ref || vars.IROH_FFI_REF || 'main' }}
+      IROH_FFI_FEATURES: ${{ github.event.inputs.iroh_ffi_features || vars.IROH_FFI_FEATURES || 'dht' }}
+      ANDROID_NDK_VERSION: ${{ vars.ANDROID_NDK_VERSION || '23.2.8568313' }}
+      LIB_NAME: libiroh_ffi
+    steps:
+      - name: Checkout iroh-ffi fork
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ env.IROH_FFI_REPOSITORY }}
+          ref: ${{ env.IROH_FFI_REF }}
+          path: iroh-ffi
+          fetch-depth: 1
+          token: ${{ secrets.IROH_FFI_TOKEN || github.token }}
+
+      - name: Install Rust for Android targets
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          targets: aarch64-linux-android,armv7-linux-androideabi
+
+      - name: Cache Cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: iroh-ffi -> target
+
+      - name: Install Android SDK and NDK
+        uses: android-actions/setup-android@v4
+
+      - name: Install selected NDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager --install "ndk;${ANDROID_NDK_VERSION}"
+          echo "ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}" >> "$GITHUB_ENV"
+          echo "ANDROID_NDK_ROOT=${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}" >> "$GITHUB_ENV"
+
+      - name: Install cargo-ndk
+        shell: bash
+        run: cargo install cargo-ndk --version 3.5.4 --locked
+
+      - name: Validate DHT integration
+        working-directory: iroh-ffi
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${IROH_FFI_FEATURES}" ]; then
+            echo "::error::IROH_FFI_FEATURES is empty. Set it to the DHT feature of your iroh-ffi fork."
+            exit 1
+          fi
+          if ! grep -RqsE 'iroh-mainline-address-lookup|iroh-topic-tracker|iroh-gossip' Cargo.toml src; then
+            echo "::error::No DHT integration found. Use a fork of iroh-ffi with iroh-mainline-address-lookup or iroh-topic-tracker added to Cargo.toml and src/."
+            exit 1
+          fi
+          echo "DHT integration found; features: ${IROH_FFI_FEATURES}"
+
+      - name: Build host library for UniFFI bindings
+        working-directory: iroh-ffi
+        shell: bash
+        run: |
+          set -euo pipefail
+          FEATURE_ARGS=()
+          if [ -n "${IROH_FFI_FEATURES}" ]; then
+            FEATURE_ARGS=(--features "${IROH_FFI_FEATURES}")
+          fi
+          cargo build --lib -p iroh-ffi "${FEATURE_ARGS[@]}"
+
+      - name: Generate Kotlin bindings
+        working-directory: iroh-ffi
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET_DIR="$(cargo metadata --format-version 1 --no-deps | python3 -c 'import json,sys;print(json.load(sys.stdin)["target_directory"])')"
+          mkdir -p ../artifacts/kotlin
+          cargo run --bin uniffi-bindgen generate --language kotlin \
+            --out-dir ../artifacts/kotlin \
+            --config uniffi.toml \
+            --library "${TARGET_DIR}/debug/${LIB_NAME}.so"
+
+      - name: Build Android .so files
+        working-directory: iroh-ffi
+        shell: bash
+        run: |
+          set -euo pipefail
+          FEATURE_ARGS=()
+          if [ -n "${IROH_FFI_FEATURES}" ]; then
+            FEATURE_ARGS=(--features "${IROH_FFI_FEATURES}")
+          fi
+          mkdir -p ../artifacts/jniLibs
+          cargo ndk -o ../artifacts/jniLibs \
+            -t arm64-v8a \
+            -t armeabi-v7a \
+            build --release --lib -p iroh-ffi "${FEATURE_ARGS[@]}"
+
+      - name: Verify artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s artifacts/jniLibs/arm64-v8a/libiroh_ffi.so
+          test -s artifacts/jniLibs/armeabi-v7a/libiroh_ffi.so
+          test -s artifacts/kotlin/computer/iroh/iroh_ffi.kt
+          file artifacts/jniLibs/arm64-v8a/libiroh_ffi.so
+          file artifacts/jniLibs/armeabi-v7a/libiroh_ffi.so
+
+      - name: Create archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd artifacts && zip -r "../iroh-ffi-dht-${{ github.run_id }}.zip" .)
+
+      - name: Upload archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: iroh-ffi-dht-${{ github.run_id }}
+          path: iroh-ffi-dht-${{ github.run_id }}.zip
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload jniLibs
+        uses: actions/upload-artifact@v4
+        with:
+          name: iroh-ffi-jniLibs-${{ github.run_id }}
+          path: artifacts/jniLibs/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload Kotlin bindings
+        uses: actions/upload-artifact@v4
+        with:
+          name: iroh-ffi-kotlin-${{ github.run_id }}
+          path: artifacts/kotlin/
+          if-no-files-found: error
+          retention-days: 30
