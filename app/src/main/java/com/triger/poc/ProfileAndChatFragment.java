@@ -94,6 +94,8 @@ public class ProfileAndChatFragment extends Fragment {
     private final IrohNode.OnPeerSearchListener searchListener =
             (query, endpointId, username) -> handler.post(
                     () -> applySearchResult(query, endpointId, username));
+    private final IrohNode.OnPeerDiscoveredListener peerDiscoveredListener =
+            peer -> handler.post(this::renderPeerList);
 
 
 
@@ -306,6 +308,7 @@ public class ProfileAndChatFragment extends Fragment {
         });
 
         irohNode.addOnPeerSearchListener(searchListener);
+        irohNode.addOnPeerDiscoveredListener(peerDiscoveredListener);
         irohNode.start(requireContext().getApplicationContext());
         irohNode.startDiscovery();
         statusStartedAt = SystemClock.elapsedRealtime();
@@ -1193,6 +1196,7 @@ public class ProfileAndChatFragment extends Fragment {
     @Override
     public void onDestroyView() {
         irohNode.removeOnPeerSearchListener(searchListener);
+        irohNode.removeOnPeerDiscoveredListener(peerDiscoveredListener);
         cancelEndpointSearch();
         handler.removeCallbacksAndMessages(null);
         if (tabMediator != null) {

@@ -1065,6 +1065,24 @@ external fun uniffi_iroh_ffi_checksum_method_servicesclient_submit_network_diagn
 ): Int
 external fun uniffi_iroh_ffi_checksum_method_endpointticket_endpoint_addr(
 ): Int
+external fun uniffi_iroh_ffi_checksum_method_gossipnode_subscribe_with_discovery(
+): Int
+external fun uniffi_iroh_ffi_checksum_method_gossipnode_subscribe_with_discovery_joined(
+): Int
+external fun uniffi_iroh_ffi_checksum_method_topicsubscription_broadcast(
+): Int
+external fun uniffi_iroh_ffi_checksum_method_topicsubscription_broadcast_neighbors(
+): Int
+external fun uniffi_iroh_ffi_checksum_method_topicsubscription_discovered_peer_count(
+): Int
+external fun uniffi_iroh_ffi_checksum_method_topicsubscription_is_discovery_running(
+): Int
+external fun uniffi_iroh_ffi_checksum_method_topicsubscription_join_peers(
+): Int
+external fun uniffi_iroh_ffi_checksum_method_topicsubscription_next_event(
+): Int
+external fun uniffi_iroh_ffi_checksum_method_topicsubscription_stop_discovery(
+): Int
 external fun uniffi_iroh_ffi_checksum_method_addrchangecallback_on_change(
 ): Int
 external fun uniffi_iroh_ffi_checksum_method_homerelaycallback_on_change(
@@ -1108,6 +1126,8 @@ external fun uniffi_iroh_ffi_checksum_constructor_servicesclient_create(
 external fun uniffi_iroh_ffi_checksum_constructor_endpointticket_from_addr(
 ): Int
 external fun uniffi_iroh_ffi_checksum_constructor_endpointticket_from_string(
+): Int
+external fun uniffi_iroh_ffi_checksum_constructor_gossipnode_spawn(
 ): Int
 external fun ffi_iroh_ffi_uniffi_contract_version(
 ): Int
@@ -1535,6 +1555,34 @@ external fun uniffi_iroh_ffi_fn_method_endpointticket_endpoint_addr(`ptr`: Long,
 ): Long
 external fun uniffi_iroh_ffi_fn_method_endpointticket_uniffi_trait_display(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): RustBuffer.ByValue
+external fun uniffi_iroh_ffi_fn_clone_gossipnode(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_iroh_ffi_fn_free_gossipnode(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_iroh_ffi_fn_constructor_gossipnode_spawn(`endpoint`: Long,
+): Long
+external fun uniffi_iroh_ffi_fn_method_gossipnode_subscribe_with_discovery(`ptr`: Long,`topicId`: RustBuffer.ByValue,`bootstrapPeers`: RustBuffer.ByValue,`options`: RustBuffer.ByValue,
+): Long
+external fun uniffi_iroh_ffi_fn_method_gossipnode_subscribe_with_discovery_joined(`ptr`: Long,`topicId`: RustBuffer.ByValue,`bootstrapPeers`: RustBuffer.ByValue,`options`: RustBuffer.ByValue,
+): Long
+external fun uniffi_iroh_ffi_fn_clone_topicsubscription(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Long
+external fun uniffi_iroh_ffi_fn_free_topicsubscription(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
+external fun uniffi_iroh_ffi_fn_method_topicsubscription_broadcast(`ptr`: Long,`message`: RustBuffer.ByValue,
+): Long
+external fun uniffi_iroh_ffi_fn_method_topicsubscription_broadcast_neighbors(`ptr`: Long,`message`: RustBuffer.ByValue,
+): Long
+external fun uniffi_iroh_ffi_fn_method_topicsubscription_discovered_peer_count(`ptr`: Long,
+): Long
+external fun uniffi_iroh_ffi_fn_method_topicsubscription_is_discovery_running(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Byte
+external fun uniffi_iroh_ffi_fn_method_topicsubscription_join_peers(`ptr`: Long,`peers`: RustBuffer.ByValue,
+): Long
+external fun uniffi_iroh_ffi_fn_method_topicsubscription_next_event(`ptr`: Long,
+): Long
+external fun uniffi_iroh_ffi_fn_method_topicsubscription_stop_discovery(`ptr`: Long,uniffi_out_err: UniffiRustCallStatus, 
+): Unit
 external fun uniffi_iroh_ffi_fn_clone_addrchangecallback(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
 ): Long
 external fun uniffi_iroh_ffi_fn_free_addrchangecallback(`handle`: Long,uniffi_out_err: UniffiRustCallStatus, 
@@ -2054,6 +2102,33 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_iroh_ffi_checksum_method_endpointticket_endpoint_addr() != 64212) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
+    if (lib.uniffi_iroh_ffi_checksum_method_gossipnode_subscribe_with_discovery() != 4109) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_method_gossipnode_subscribe_with_discovery_joined() != 27141) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_method_topicsubscription_broadcast() != 15347) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_method_topicsubscription_broadcast_neighbors() != 46671) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_method_topicsubscription_discovered_peer_count() != 40371) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_method_topicsubscription_is_discovery_running() != 48065) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_method_topicsubscription_join_peers() != 19392) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_method_topicsubscription_next_event() != 20135) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_method_topicsubscription_stop_discovery() != 40658) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
     if (lib.uniffi_iroh_ffi_checksum_method_addrchangecallback_on_change() != 35709) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
@@ -2118,6 +2193,9 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_iroh_ffi_checksum_constructor_endpointticket_from_string() != 3825) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_iroh_ffi_checksum_constructor_gossipnode_spawn() != 17290) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
 }
@@ -7008,6 +7086,301 @@ public object FfiConverterTypeEndpointTicket: FfiConverter<EndpointTicket, Long>
     override fun allocationSize(value: EndpointTicket) = 8UL
 
     override fun write(value: EndpointTicket, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
+
+
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+public interface GossipNodeInterface {
+    
+    suspend fun `subscribeWithDiscovery`(`topicId`: kotlin.ByteArray, `bootstrapPeers`: List<kotlin.String>, `options`: TopicDiscoveryOptions?): TopicSubscription
+    
+    suspend fun `subscribeWithDiscoveryJoined`(`topicId`: kotlin.ByteArray, `bootstrapPeers`: List<kotlin.String>, `options`: TopicDiscoveryOptions?): TopicSubscription
+    
+    companion object
+}
+
+open class GossipNode: Disposable, AutoCloseable, GossipNodeInterface
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = null
+    }
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable?
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable?.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable?.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_iroh_ffi_fn_free_gossipnode(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_iroh_ffi_fn_clone_gossipnode(handle, status)
+        }
+    }
+
+    
+    @Throws(IrohException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `subscribeWithDiscovery`(`topicId`: kotlin.ByteArray, `bootstrapPeers`: List<kotlin.String>, `options`: TopicDiscoveryOptions?) : TopicSubscription {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_iroh_ffi_fn_method_gossipnode_subscribe_with_discovery(
+                uniffiHandle,
+                FfiConverterByteArray.lower(`topicId`),FfiConverterSequenceString.lower(`bootstrapPeers`),FfiConverterOptionalTypeTopicDiscoveryOptions.lower(`options`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_poll_u64(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_complete_u64(future, continuation) },
+        { future -> UniffiLib.ffi_iroh_ffi_rust_future_free_u64(future) },
+        // lift function
+        { FfiConverterTypeTopicSubscription.lift(it) },
+        // Error FFI converter
+        IrohException.ErrorHandler,
+    )
+    }
+
+    
+    @Throws(IrohException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `subscribeWithDiscoveryJoined`(`topicId`: kotlin.ByteArray, `bootstrapPeers`: List<kotlin.String>, `options`: TopicDiscoveryOptions?) : TopicSubscription {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_iroh_ffi_fn_method_gossipnode_subscribe_with_discovery_joined(
+                uniffiHandle,
+                FfiConverterByteArray.lower(`topicId`),FfiConverterSequenceString.lower(`bootstrapPeers`),FfiConverterOptionalTypeTopicDiscoveryOptions.lower(`options`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_poll_u64(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_complete_u64(future, continuation) },
+        { future -> UniffiLib.ffi_iroh_ffi_rust_future_free_u64(future) },
+        // lift function
+        { FfiConverterTypeTopicSubscription.lift(it) },
+        // Error FFI converter
+        IrohException.ErrorHandler,
+    )
+    }
+
+    
+
+    
+
+
+    
+    companion object {
+        
+    @Throws(IrohException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+     suspend fun `spawn`(`endpoint`: Endpoint) : GossipNode {
+        return uniffiRustCallAsync(
+        UniffiLib.uniffi_iroh_ffi_fn_constructor_gossipnode_spawn(FfiConverterTypeEndpoint.lower(`endpoint`),),
+        { future, callback, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_poll_u64(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_complete_u64(future, continuation) },
+        { future -> UniffiLib.ffi_iroh_ffi_rust_future_free_u64(future) },
+        // lift function
+        { FfiConverterTypeGossipNode.lift(it) },
+        // Error FFI converter
+        IrohException.ErrorHandler,
+    )
+    }
+
+        
+    }
+    
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeGossipNode: FfiConverter<GossipNode, Long> {
+    override fun lower(value: GossipNode): Long {
+        return value.uniffiCloneHandle()
+    }
+
+    override fun lift(value: Long): GossipNode {
+        return GossipNode(UniffiWithHandle, value)
+    }
+
+    override fun read(buf: ByteBuffer): GossipNode {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: GossipNode) = 8UL
+
+    override fun write(value: GossipNode, buf: ByteBuffer) {
         buf.putLong(lower(value))
     }
 }
@@ -13035,6 +13408,387 @@ public object FfiConverterTypeSignature: FfiConverter<Signature, Long> {
 //
 
 
+public interface TopicSubscriptionInterface {
+    
+    suspend fun `broadcast`(`message`: kotlin.ByteArray)
+    
+    suspend fun `broadcastNeighbors`(`message`: kotlin.ByteArray)
+    
+    suspend fun `discoveredPeerCount`(): kotlin.ULong
+    
+    fun `isDiscoveryRunning`(): kotlin.Boolean
+    
+    suspend fun `joinPeers`(`peers`: List<kotlin.String>)
+    
+    suspend fun `nextEvent`(): TopicEvent?
+    
+    fun `stopDiscovery`()
+    
+    companion object
+}
+
+open class TopicSubscription: Disposable, AutoCloseable, TopicSubscriptionInterface
+{
+
+    @Suppress("UNUSED_PARAMETER")
+    /**
+     * @suppress
+     */
+    constructor(withHandle: UniffiWithHandle, handle: Long) {
+        this.handle = handle
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(handle))
+    }
+
+    /**
+     * @suppress
+     *
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noHandle: NoHandle) {
+        this.handle = 0
+        this.cleanable = null
+    }
+
+    protected val handle: Long
+    protected val cleanable: UniffiCleaner.Cleanable?
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable?.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithHandle(block: (handle: Long) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the handle being freed concurrently.
+        try {
+            return block(this.uniffiCloneHandle())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable?.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val handle: Long) : Runnable {
+        override fun run() {
+            if (handle == 0.toLong()) {
+                // Fake object created with `NoHandle`, don't try to free.
+                return;
+            }
+            uniffiRustCall { status ->
+                UniffiLib.uniffi_iroh_ffi_fn_free_topicsubscription(handle, status)
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    fun uniffiCloneHandle(): Long {
+        if (handle == 0.toLong()) {
+            throw InternalException("uniffiCloneHandle() called on NoHandle object");
+        }
+        return uniffiRustCall() { status ->
+            UniffiLib.uniffi_iroh_ffi_fn_clone_topicsubscription(handle, status)
+        }
+    }
+
+    
+    @Throws(IrohException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `broadcast`(`message`: kotlin.ByteArray) {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_iroh_ffi_fn_method_topicsubscription_broadcast(
+                uniffiHandle,
+                FfiConverterByteArray.lower(`message`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_iroh_ffi_rust_future_free_void(future) },
+        // lift function
+        { Unit },
+        
+        // Error FFI converter
+        IrohException.ErrorHandler,
+    )
+    }
+
+    
+    @Throws(IrohException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `broadcastNeighbors`(`message`: kotlin.ByteArray) {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_iroh_ffi_fn_method_topicsubscription_broadcast_neighbors(
+                uniffiHandle,
+                FfiConverterByteArray.lower(`message`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_iroh_ffi_rust_future_free_void(future) },
+        // lift function
+        { Unit },
+        
+        // Error FFI converter
+        IrohException.ErrorHandler,
+    )
+    }
+
+    
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `discoveredPeerCount`() : kotlin.ULong {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_iroh_ffi_fn_method_topicsubscription_discovered_peer_count(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_poll_u64(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_complete_u64(future, continuation) },
+        { future -> UniffiLib.ffi_iroh_ffi_rust_future_free_u64(future) },
+        // lift function
+        { FfiConverterULong.lift(it) },
+        // Error FFI converter
+        UniffiNullRustCallStatusErrorHandler,
+    )
+    }
+
+    override fun `isDiscoveryRunning`(): kotlin.Boolean {
+            return FfiConverterBoolean.lift(
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_iroh_ffi_fn_method_topicsubscription_is_discovery_running(
+        it,
+        _status)
+}
+    }
+    )
+    }
+    
+
+    
+    @Throws(IrohException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `joinPeers`(`peers`: List<kotlin.String>) {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_iroh_ffi_fn_method_topicsubscription_join_peers(
+                uniffiHandle,
+                FfiConverterSequenceString.lower(`peers`),
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_poll_void(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_complete_void(future, continuation) },
+        { future -> UniffiLib.ffi_iroh_ffi_rust_future_free_void(future) },
+        // lift function
+        { Unit },
+        
+        // Error FFI converter
+        IrohException.ErrorHandler,
+    )
+    }
+
+    
+    @Throws(IrohException::class)
+    @Suppress("ASSIGNED_BUT_NEVER_ACCESSED_VARIABLE")
+    override suspend fun `nextEvent`() : TopicEvent? {
+        return uniffiRustCallAsync(
+        callWithHandle { uniffiHandle ->
+            UniffiLib.uniffi_iroh_ffi_fn_method_topicsubscription_next_event(
+                uniffiHandle,
+                
+            )
+        },
+        { future, callback, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_poll_rust_buffer(future, callback, continuation) },
+        { future, continuation -> UniffiLib.ffi_iroh_ffi_rust_future_complete_rust_buffer(future, continuation) },
+        { future -> UniffiLib.ffi_iroh_ffi_rust_future_free_rust_buffer(future) },
+        // lift function
+        { FfiConverterOptionalTypeTopicEvent.lift(it) },
+        // Error FFI converter
+        IrohException.ErrorHandler,
+    )
+    }
+
+    override fun `stopDiscovery`()
+        = 
+    callWithHandle {
+    uniffiRustCall() { _status ->
+    UniffiLib.uniffi_iroh_ffi_fn_method_topicsubscription_stop_discovery(
+        it,
+        _status)
+}
+    }
+    
+    
+
+    
+
+    
+
+
+    
+    
+    /**
+     * @suppress
+     */
+    companion object
+    
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeTopicSubscription: FfiConverter<TopicSubscription, Long> {
+    override fun lower(value: TopicSubscription): Long {
+        return value.uniffiCloneHandle()
+    }
+
+    override fun lift(value: Long): TopicSubscription {
+        return TopicSubscription(UniffiWithHandle, value)
+    }
+
+    override fun read(buf: ByteBuffer): TopicSubscription {
+        return lift(buf.getLong())
+    }
+
+    override fun allocationSize(value: TopicSubscription) = 8UL
+
+    override fun write(value: TopicSubscription, buf: ByteBuffer) {
+        buf.putLong(lower(value))
+    }
+}
+
+
+// This template implements a class for working with a Rust struct via a handle
+// to the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque handle to the underlying Rust struct.
+//     Method calls need to read this handle from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its handle should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the handle, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the handle, but is interrupted
+//      before it can pass the handle over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read handle value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
 /**
  * Handle to a running watcher task. Drop it (or call [`Self::stop`]) to
  * unregister the callback.
@@ -13944,6 +14698,102 @@ public object FfiConverterTypeServicesPresetOptions: FfiConverterRustBuffer<Serv
 
 
 
+data class TopicDiscoveryOptions (
+    var `maxPeersPerRound`: kotlin.ULong? = null 
+    , 
+    var `connectionTimeoutMs`: kotlin.ULong? = null 
+    , 
+    var `announceIntervalMs`: kotlin.ULong? = null 
+    , 
+    var `discoveryIntervalMs`: kotlin.ULong? = null 
+    , 
+    var `discoveryIntervalNoPeersMs`: kotlin.ULong? = null 
+    
+){
+    
+
+    
+
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeTopicDiscoveryOptions: FfiConverterRustBuffer<TopicDiscoveryOptions> {
+    override fun read(buf: ByteBuffer): TopicDiscoveryOptions {
+        return TopicDiscoveryOptions(
+            FfiConverterOptionalULong.read(buf),
+            FfiConverterOptionalULong.read(buf),
+            FfiConverterOptionalULong.read(buf),
+            FfiConverterOptionalULong.read(buf),
+            FfiConverterOptionalULong.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: TopicDiscoveryOptions) = (
+            FfiConverterOptionalULong.allocationSize(value.`maxPeersPerRound`) +
+            FfiConverterOptionalULong.allocationSize(value.`connectionTimeoutMs`) +
+            FfiConverterOptionalULong.allocationSize(value.`announceIntervalMs`) +
+            FfiConverterOptionalULong.allocationSize(value.`discoveryIntervalMs`) +
+            FfiConverterOptionalULong.allocationSize(value.`discoveryIntervalNoPeersMs`)
+    )
+
+    override fun write(value: TopicDiscoveryOptions, buf: ByteBuffer) {
+            FfiConverterOptionalULong.write(value.`maxPeersPerRound`, buf)
+            FfiConverterOptionalULong.write(value.`connectionTimeoutMs`, buf)
+            FfiConverterOptionalULong.write(value.`announceIntervalMs`, buf)
+            FfiConverterOptionalULong.write(value.`discoveryIntervalMs`, buf)
+            FfiConverterOptionalULong.write(value.`discoveryIntervalNoPeersMs`, buf)
+    }
+}
+
+
+
+data class TopicMessage (
+    var `content`: kotlin.ByteArray
+    , 
+    var `deliveredFrom`: kotlin.String
+    , 
+    var `isDirect`: kotlin.Boolean
+    
+){
+    
+
+    
+
+    
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeTopicMessage: FfiConverterRustBuffer<TopicMessage> {
+    override fun read(buf: ByteBuffer): TopicMessage {
+        return TopicMessage(
+            FfiConverterByteArray.read(buf),
+            FfiConverterString.read(buf),
+            FfiConverterBoolean.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: TopicMessage) = (
+            FfiConverterByteArray.allocationSize(value.`content`) +
+            FfiConverterString.allocationSize(value.`deliveredFrom`) +
+            FfiConverterBoolean.allocationSize(value.`isDirect`)
+    )
+
+    override fun write(value: TopicMessage, buf: ByteBuffer) {
+            FfiConverterByteArray.write(value.`content`, buf)
+            FfiConverterString.write(value.`deliveredFrom`, buf)
+            FfiConverterBoolean.write(value.`isDirect`, buf)
+    }
+}
+
+
+
 
 
 sealed class CallbackException: kotlin.Exception() {
@@ -14623,6 +15473,141 @@ public object FfiConverterTypeSide: FfiConverterRustBuffer<Side> {
 
 
 
+sealed class TopicEvent {
+    
+    data class NeighborUp(
+        val `endpointId`: kotlin.String) : TopicEvent()
+        
+    {
+        
+
+        companion object
+    }
+    
+    data class NeighborDown(
+        val `endpointId`: kotlin.String) : TopicEvent()
+        
+    {
+        
+
+        companion object
+    }
+    
+    data class Received(
+        val `message`: computer.iroh.TopicMessage) : TopicEvent()
+        
+    {
+        
+
+        companion object
+    }
+    
+    object Lagged : TopicEvent()
+    
+    
+    object Unknown : TopicEvent()
+    
+    
+
+    
+
+    
+    
+
+
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeTopicEvent : FfiConverterRustBuffer<TopicEvent>{
+    override fun read(buf: ByteBuffer): TopicEvent {
+        return when(buf.getInt()) {
+            1 -> TopicEvent.NeighborUp(
+                FfiConverterString.read(buf),
+                )
+            2 -> TopicEvent.NeighborDown(
+                FfiConverterString.read(buf),
+                )
+            3 -> TopicEvent.Received(
+                FfiConverterTypeTopicMessage.read(buf),
+                )
+            4 -> TopicEvent.Lagged
+            5 -> TopicEvent.Unknown
+            else -> throw RuntimeException("invalid enum value, something is very wrong!!")
+        }
+    }
+
+    override fun allocationSize(value: TopicEvent) = when(value) {
+        is TopicEvent.NeighborUp -> {
+            // Add the size for the Int that specifies the variant plus the size needed for all fields
+            (
+                4UL
+                + FfiConverterString.allocationSize(value.`endpointId`)
+            )
+        }
+        is TopicEvent.NeighborDown -> {
+            // Add the size for the Int that specifies the variant plus the size needed for all fields
+            (
+                4UL
+                + FfiConverterString.allocationSize(value.`endpointId`)
+            )
+        }
+        is TopicEvent.Received -> {
+            // Add the size for the Int that specifies the variant plus the size needed for all fields
+            (
+                4UL
+                + FfiConverterTypeTopicMessage.allocationSize(value.`message`)
+            )
+        }
+        is TopicEvent.Lagged -> {
+            // Add the size for the Int that specifies the variant plus the size needed for all fields
+            (
+                4UL
+            )
+        }
+        is TopicEvent.Unknown -> {
+            // Add the size for the Int that specifies the variant plus the size needed for all fields
+            (
+                4UL
+            )
+        }
+    }
+
+    override fun write(value: TopicEvent, buf: ByteBuffer) {
+        when(value) {
+            is TopicEvent.NeighborUp -> {
+                buf.putInt(1)
+                FfiConverterString.write(value.`endpointId`, buf)
+                Unit
+            }
+            is TopicEvent.NeighborDown -> {
+                buf.putInt(2)
+                FfiConverterString.write(value.`endpointId`, buf)
+                Unit
+            }
+            is TopicEvent.Received -> {
+                buf.putInt(3)
+                FfiConverterTypeTopicMessage.write(value.`message`, buf)
+                Unit
+            }
+            is TopicEvent.Lagged -> {
+                buf.putInt(4)
+                Unit
+            }
+            is TopicEvent.Unknown -> {
+                buf.putInt(5)
+                Unit
+            }
+        }.let { /* this makes the `when` an expression, which ensures it is exhaustive */ }
+    }
+}
+
+
+
+
+
 
 /**
  * @suppress
@@ -14937,6 +15922,70 @@ public object FfiConverterOptionalTypeRelayConfig: FfiConverterRustBuffer<RelayC
         } else {
             buf.put(1)
             FfiConverterTypeRelayConfig.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterOptionalTypeTopicDiscoveryOptions: FfiConverterRustBuffer<TopicDiscoveryOptions?> {
+    override fun read(buf: ByteBuffer): TopicDiscoveryOptions? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterTypeTopicDiscoveryOptions.read(buf)
+    }
+
+    override fun allocationSize(value: TopicDiscoveryOptions?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterTypeTopicDiscoveryOptions.allocationSize(value)
+        }
+    }
+
+    override fun write(value: TopicDiscoveryOptions?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterTypeTopicDiscoveryOptions.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterOptionalTypeTopicEvent: FfiConverterRustBuffer<TopicEvent?> {
+    override fun read(buf: ByteBuffer): TopicEvent? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterTypeTopicEvent.read(buf)
+    }
+
+    override fun allocationSize(value: TopicEvent?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterTypeTopicEvent.allocationSize(value)
+        }
+    }
+
+    override fun write(value: TopicEvent?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterTypeTopicEvent.write(value, buf)
         }
     }
 }

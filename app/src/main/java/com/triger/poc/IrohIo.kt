@@ -12,8 +12,37 @@ import java.nio.charset.StandardCharsets
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 
+import computer.iroh.GossipNode
+import computer.iroh.TopicDiscoveryOptions
+import computer.iroh.TopicEvent
+import computer.iroh.TopicSubscription
+
 object IrohIo {
     private const val MAX_MESSAGE_BYTES = 1 shl 20
+
+    @JvmStatic
+    fun defaultTopicDiscoveryOptions(): TopicDiscoveryOptions =
+        TopicDiscoveryOptions()
+
+    @JvmStatic
+    fun spawnGossipNode(endpoint: Endpoint): GossipNode = runBlocking {
+        GossipNode.spawn(endpoint)
+    }
+
+    @JvmStatic
+    fun subscribeWithDiscovery(
+        node: GossipNode,
+        topicId: ByteArray,
+        bootstrapPeers: List<String>,
+        options: TopicDiscoveryOptions?
+    ): TopicSubscription = runBlocking {
+        node.subscribeWithDiscovery(topicId, bootstrapPeers, options)
+    }
+
+    @JvmStatic
+    fun nextTopicEvent(sub: TopicSubscription): TopicEvent? = runBlocking {
+        sub.nextEvent()
+    }
 
     @JvmStatic
     fun acceptNext(endpoint: Endpoint): Incoming? = runBlocking {

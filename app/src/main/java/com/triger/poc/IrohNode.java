@@ -45,6 +45,7 @@ import computer.iroh.Endpoint;
 import computer.iroh.EndpointAddr;
 import computer.iroh.EndpointBuilder;
 import computer.iroh.EndpointId;
+import computer.iroh.GossipNode;
 import computer.iroh.HomeRelayCallback;
 import computer.iroh.Incoming;
 import computer.iroh.IrohAndroid;
@@ -54,6 +55,9 @@ import computer.iroh.PathSnapshot;
 import computer.iroh.RecvStream;
 import computer.iroh.RelayMode;
 import computer.iroh.SecretKey;
+import computer.iroh.TopicDiscoveryOptions;
+import computer.iroh.TopicEvent;
+import computer.iroh.TopicSubscription;
 import computer.iroh.WatchHandle;
 
 import kotlin.Unit;
@@ -82,6 +86,10 @@ public class IrohNode {
     private ExecutorService exec = Executors.newSingleThreadExecutor();
     private volatile Endpoint endpoint;
     private volatile String endpointId = "";
+    private volatile GossipNode gossipNode;
+    private volatile TopicSubscription topicSubscription;
+    private volatile Thread topicEventThread;
+    private static final String TOPIC_GLOBAL = "triger-global";
 
     public interface Listener {
         void onStarted(String endpointId);
@@ -119,6 +127,10 @@ public class IrohNode {
 
     public interface OnPeerConnectedListener {
         void onPeerConnected(String endpointId);
+    }
+
+    public interface OnPeerDiscoveredListener {
+        void onPeerDiscovered(String endpointId);
     }
 
     /** Результат глобального поиска контакта по нику через Peer Exchange. */
@@ -290,6 +302,7 @@ public class IrohNode {
     private final CopyOnWriteArrayList<OnBlockListener> blockListeners = new CopyOnWriteArrayList<>();
     private final CopyOnWriteArrayList<OnChainSyncListener> chainSyncListeners = new CopyOnWriteArrayList<>();
     private final CopyOnWriteArrayList<OnPeerConnectedListener> peerConnectedListeners = new CopyOnWriteArrayList<>();
+    private final CopyOnWriteArrayList<OnPeerDiscoveredListener> peerDiscoveredListeners = new CopyOnWriteArrayList<>();
     private final CopyOnWriteArrayList<OnPeerSearchListener> searchListeners = new CopyOnWriteArrayList<>();
     private final Map<String, Connection> connections = new ConcurrentHashMap<>();
     /** id уже доставленных сообщений: защита от дубля P2P + Relay. */
@@ -483,6 +496,16 @@ public class IrohNode {
 
     public void removeOnPeerSearchListener(OnPeerSearchListener l) {
         searchListeners.remove(l);
+    }
+
+    public void addOnPeerDiscoveredListener(OnPeerDiscoveredListener l) {
+        if (l != null) {
+            peerDiscoveredListeners.addIfAbsent(l);
+        }
+    }
+
+    public void removeOnPeerDiscoveredListener(OnPeerDiscoveredListener l) {
+        peerDiscoveredListeners.remove(l);
     }
 
     /** Запуск без Android-контекста: работоспособно только там, где контекст не требуется. */
@@ -686,6 +709,7 @@ public class IrohNode {
             notifyStarted(endpointId);
             timing("Iroh started: id=" + endpointId);
             startDiscovery();
+            startTopicDiscovery();
             startNetworkStrategy(endpoint);
             if (heartbeatRequested) {
                 applyHeartbeatState();
@@ -1440,6 +1464,131 @@ public class IrohNode {
         t.setDaemon(true);
         discoveryThread = t;
         t.start();
+    }
+
+    private void startTopicDiscovery() {
+        Endpoint ep = endpoint;
+        if (ep == null || !started.get()) {
+            return;
+        }
+        stopTopicDiscovery();
+        ioExec.submit(() -> {
+            GossipNode gn = null;
+            TopicSubscription sub = null;
+            try {
+                gn = IrohIo.spawnGossipNode(ep);
+                TopicDiscoveryOptions opts = IrohIo.defaultTopicDiscoveryOptions();
+                sub = IrohIo.subscribeWithDiscovery(
+                        gn, TOPIC_GLOBAL.getBytes(StandardCharsets.UTF_8),
+                        Collections.emptyList(), opts);
+                gossipNode = gn;
+                topicSubscription = sub;
+                Log.i(TAG, "TopicDiscovery: subscribed to " + TOPIC_GLOBAL);
+                startTopicEventLoop(sub);
+            } catch (Throwable t) {
+                Log.w(TAG, "TopicDiscovery: start failed: " + t);
+                safeCloseTopicSubscription(sub);
+                safeCloseGossipNode(gn);
+                if (gossipNode == gn) {
+                    gossipNode = null;
+                }
+                if (topicSubscription == sub) {
+                    topicSubscription = null;
+                }
+            }
+        });
+    }
+
+    private void startTopicEventLoop(TopicSubscription sub) {
+        Thread old = topicEventThread;
+        if (old != null) {
+            old.interrupt();
+        }
+        Thread t = new Thread(() -> {
+            Log.i(TAG, "TopicDiscovery: event loop started");
+            while (started.get() && topicSubscription == sub) {
+                try {
+                    TopicEvent ev = IrohIo.nextTopicEvent(sub);
+                    if (ev == null) {
+                        Log.i(TAG, "TopicDiscovery: subscription closed");
+                        break;
+                    }
+                    handleTopicEvent(ev);
+                } catch (Throwable tEx) {
+                    if (tEx instanceof InterruptedException || Thread.currentThread().isInterrupted()) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                    if (started.get() && topicSubscription == sub) {
+                        Log.w(TAG, "TopicDiscovery: event loop error: " + tEx);
+                    }
+                    sleepQuietly(500L);
+                }
+            }
+            Log.i(TAG, "TopicDiscovery: event loop stopped");
+        }, "iroh-topic-discovery");
+        t.setDaemon(true);
+        topicEventThread = t;
+        t.start();
+    }
+
+    private void handleTopicEvent(TopicEvent ev) {
+        if (ev instanceof TopicEvent.NeighborUp) {
+            String peer = ((TopicEvent.NeighborUp) ev).getEndpointId();
+            if (peer == null || peer.trim().isEmpty()) return;
+            peer = peer.trim();
+            if (peer.equals(endpointId) || !isValidEndpointId(peer)) return;
+            Log.i(TAG, "TopicDiscovery: NeighborUp " + peer);
+            if (addKnownPeer(peer)) {
+                persistKnownPeers();
+            }
+            notifyPeerDiscovered(peer);
+            notifyPeerConnected(peer);
+            connectToPeer(peer);
+        } else if (ev instanceof TopicEvent.NeighborDown) {
+            String peer = ((TopicEvent.NeighborDown) ev).getEndpointId();
+            if (peer != null) {
+                Log.i(TAG, "TopicDiscovery: NeighborDown " + peer.trim());
+            }
+        } else if (ev instanceof TopicEvent.Lagged) {
+            Log.w(TAG, "TopicDiscovery: event stream lagged");
+        }
+    }
+
+    private void stopTopicDiscovery() {
+        Thread t = topicEventThread;
+        topicEventThread = null;
+        if (t != null) {
+            t.interrupt();
+        }
+        TopicSubscription sub = topicSubscription;
+        topicSubscription = null;
+        if (sub != null) {
+            try {
+                sub.stopDiscovery();
+            } catch (Throwable ignored) {
+            }
+            safeCloseTopicSubscription(sub);
+        }
+        GossipNode gn = gossipNode;
+        gossipNode = null;
+        safeCloseGossipNode(gn);
+    }
+
+    private static void safeCloseTopicSubscription(TopicSubscription sub) {
+        if (sub == null) return;
+        try {
+            sub.close();
+        } catch (Throwable ignored) {
+        }
+    }
+
+    private static void safeCloseGossipNode(GossipNode gn) {
+        if (gn == null) return;
+        try {
+            gn.close();
+        } catch (Throwable ignored) {
+        }
     }
 
     private void scheduleN0OnlineTimer(Endpoint ep) {
@@ -3082,6 +3231,16 @@ public class IrohNode {
         }
     }
 
+    private void notifyPeerDiscovered(String peerEndpointId) {
+        for (OnPeerDiscoveredListener l : peerDiscoveredListeners) {
+            try {
+                l.onPeerDiscovered(peerEndpointId);
+            } catch (Throwable t) {
+                Log.w(TAG, "Iroh: peer discovered listener failed", t);
+            }
+        }
+    }
+
     private void notifyChainSync(String from, int remoteHeight, String remoteLastHash,
                                  List<String> blockJsons) {
         for (OnChainSyncListener l : chainSyncListeners) {
@@ -3191,6 +3350,7 @@ public class IrohNode {
         started.set(false);
         starting.set(false);
         discoveryRunning.set(false);
+        stopTopicDiscovery();
         stopReconnectLoop();
         cancelN0OnlineTimer();
         cancelIdleReconnectTimer();
@@ -4076,6 +4236,11 @@ public class IrohNode {
      * Переподключение тут не запускаем: оно доступно только при старте, по кнопке
      * «Обновить» и по таймеру, когда нет активных соединений.
      */
+    private static boolean isActiveNetworkType(String type) {
+        return NetworkType.WIFI.equals(type) || NetworkType.CELLULAR.equals(type)
+                || NetworkType.ETHERNET.equals(type) || NetworkType.VPN.equals(type);
+    }
+
     public void notifyNetworkChange() {
         notifyNetworkChange(NetworkType.current(appContext));
     }
@@ -4087,8 +4252,10 @@ public class IrohNode {
         if (ep == null || !started.get()) {
             return;
         }
+        String previous;
         synchronized (this) {
-            if (type.equals(lastNotifiedNetworkType)) {
+            previous = lastNotifiedNetworkType;
+            if (type.equals(previous) || !isActiveNetworkType(type)) {
                 return;
             }
             lastNotifiedNetworkType = type;
@@ -4105,7 +4272,7 @@ public class IrohNode {
             return;
         }
         try {
-            Log.i(TAG, "Network change: " + type + " -> updated (no auto-reconnect)");
+            Log.i(TAG, "Network change: " + previous + " -> " + type);
             if (heartbeatRunning) {
                 applyHeartbeatState();
             }
