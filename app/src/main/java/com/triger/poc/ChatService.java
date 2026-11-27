@@ -37,6 +37,7 @@ public class ChatService extends Service {
     private PowerManager.WakeLock wakeLock;
     private boolean networkStarted;
     private ConnectivityManager.NetworkCallback networkCallback;
+    private volatile String lastNetworkType = "";
 
     private final Runnable wakeLockRenew = new Runnable() {
         @Override
@@ -87,13 +88,14 @@ public class ChatService extends Service {
             if (cm == null) {
                 return;
             }
+            lastNetworkType = NetworkType.current(getApplicationContext());
             NetworkRequest request = new NetworkRequest.Builder()
                     .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
                     .build();
             networkCallback = new ConnectivityManager.NetworkCallback() {
                 @Override
                 public void onAvailable(Network network) {
-                    reconnectChat();
+                    handleChatNetworkChange(NetworkType.forNetwork(cm, network));
                 }
 
                 @Override
@@ -102,7 +104,7 @@ public class ChatService extends Service {
                     if (capabilities != null
                             && capabilities.hasCapability(
                             NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
-                        reconnectChat();
+                        handleChatNetworkChange(NetworkType.fromCapabilities(capabilities));
                     }
                 }
             };
@@ -110,6 +112,25 @@ public class ChatService extends Service {
         } catch (Throwable t) {
             Log.w(TAG, "Chat network callback registration failed: " + t);
         }
+    }
+
+    private void handleChatNetworkChange(String type) {
+        if (!NetworkType.WIFI.equals(type) && !NetworkType.CELLULAR.equals(type)) {
+            return;
+        }
+        String previous;
+        synchronized (this) {
+            previous = lastNetworkType;
+            if (type.equals(previous)) {
+                return;
+            }
+            lastNetworkType = type;
+        }
+        if (!NetworkType.WIFI.equals(previous) && !NetworkType.CELLULAR.equals(previous)) {
+            return;
+        }
+        Log.d(TAG, "Chat network switched: " + previous + " -> " + type);
+        reconnectChat();
     }
 
     private void reconnectChat() {

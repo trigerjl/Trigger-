@@ -496,7 +496,6 @@ public class P2PNode {
     private void broadcastHello(boolean force) {
         int n = connections.size();
         if (n == 0) {
-            uiLog("HELLO broadcast to 0 connections (no peers connected)");
             return;
         }
         uiLog("HELLO broadcast to " + n + " connections (force=" + force + ")");
