@@ -731,7 +731,7 @@ public class IrohNode {
         if (NetworkType.WIFI.equals(type)) {
             timing("Wi-Fi: mDNS + P2P scan start");
             startMdnsDiscovery();
-            ioExec.submit(() -> P2PNode.getInstance().scanLocalNetwork());
+            // ioExec.submit(() -> P2PNode.getInstance().scanLocalNetwork());
             ioExec.submit(() -> {
                 // Relay — только страховка: если за 15 секунд P2P никого не нашёл.
                 sleepQuietly(15000L);
@@ -1467,8 +1467,10 @@ public class IrohNode {
     }
 
     private void startTopicDiscovery() {
+        Log.e("Radar", "=== startTopicDiscovery() CALLED ===");
         Endpoint ep = endpoint;
         if (ep == null || !started.get()) {
+            Log.e("Radar", "Radar ABORTED: ep=" + (ep != null) + ", started=" + started.get());
             return;
         }
         stopTopicDiscovery();
@@ -1481,6 +1483,7 @@ public class IrohNode {
                 sub = IrohIo.subscribeWithDiscovery(
                         gn, TOPIC_GLOBAL.getBytes(StandardCharsets.UTF_8),
                         Collections.emptyList(), opts);
+                Log.e("Radar", "=== RADAR SUBSCRIBED SUCCESSFULLY to " + TOPIC_GLOBAL + " ===");
                 gossipNode = gn;
                 topicSubscription = sub;
                 Log.i(TAG, "TopicDiscovery: subscribed to " + TOPIC_GLOBAL);
